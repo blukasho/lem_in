@@ -6,11 +6,11 @@
 #*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2019/08/29 10:35:46 by blukasho          #+#    #+#             *#
-#*   Updated: 2019/08/29 12:53:21 by blukasho         ###   ########.fr       *#
+#*   Updated: 2019/09/04 14:24:48 by blukasho         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
-SRCS=main.c
+SRCS=main.c read.c init.c
 
 OBJ=$(addprefix $(OBJDIR), $(SRCS:.c=.o))
 

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/04 14:30:58 by blukasho         ###   ########.fr       */
+/*   Created: 2019/09/04 14:22:27 by blukasho          #+#    #+#             */
+/*   Updated: 2019/09/04 14:24:48 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-int			main(void)
+t_lemin		*get_t_lemin(void)
 {
 	t_lemin	*lemin;
 
-	lemin = get_t_lemin();
-	if (lemin)
-	{}
-	ft_printf("main |lem-in|\n");
-	return (0);
+	lemin = (t_lemin *)malloc(sizeof(t_lemin));
+//	ft_bzero(lemin, sizeof(t_lemin));
+	return (lemin);
 }
