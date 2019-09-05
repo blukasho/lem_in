@@ -57,15 +57,15 @@ endif
 set shortmess=aoO
 badd +20 srcs/main.c
 badd +1 srcs/read.c
-badd +27 includes/lemin.h
+badd +53 includes/lemin.h
 badd +1 Makefile
 badd +23 /usr/include/errno.h
-badd +116 /usr/include/sys/errno.h
+badd +103 /usr/include/sys/errno.h
 badd +1 maps/error
 badd +64 /usr/include/limits.h
 badd +6 /usr/include/machine/limits.h
 badd +107 /usr/include/i386/limits.h
-badd +22 srcs/rooms.c
+badd +58 srcs/rooms.c
 badd +31 srcs/init.c
 badd +136 libft/includes/libft.h
 badd +4 libft/srcs/ft_isalpha.c
@@ -194,12 +194,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 58 - ((57 * winheight(0) + 35) / 70)
+let s:l = 26 - ((25 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-58
-normal! 017|
+26
+normal! 0
 wincmd w
 argglobal
 edit srcs/read.c
