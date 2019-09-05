@@ -10,7 +10,7 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-SRCS=main.c read.c init.c
+SRCS=main.c read.c init.c ants.c
 
 OBJ=$(addprefix $(OBJDIR), $(SRCS:.c=.o))
 

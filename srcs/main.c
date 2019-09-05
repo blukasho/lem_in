@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/04 14:30:58 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/05 09:23:19 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int			main(void)
 {
 	t_lemin	*lemin;
 
-	lemin = get_t_lemin();
+	lemin = lemin_read_input();
 	if (lemin)
 	{}
-	ft_printf("main |lem-in|\n");
 	return (0);
 }

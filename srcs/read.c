@@ -6,18 +6,24 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:55:34 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/04 14:24:57 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/05 11:15:03 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-//t_lemin		*ft_readmap(void)
-//{
-//
-//}
+t_lemin		*lemin_read_input(void)
+{
+	t_lemin	*lemin;
 
-char		*lemin_get_line(void) {
+	lemin = get_t_lemin();
+	lemin->ants = get_ants();
+	ft_printf("get_ants() |%lld|\n", lemin->ants);
+	return (lemin);
+}
+
+char		*lemin_get_line(void)
+{
 	char	*line;
 	char	*tmp;
 	char	*buf;

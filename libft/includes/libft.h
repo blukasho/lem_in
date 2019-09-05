@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 18:40:24 by blukasho          #+#    #+#             */
-/*   Updated: 2019/07/23 14:39:13 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/05 10:38:15 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,5 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 __int128			ft_len_of_digit(__int128 d);
-__int128			ft_atoi(const char *str);
+long long int		ft_atoi(const char *str);
 #endif

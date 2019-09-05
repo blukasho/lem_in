@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 22:42:02 by blukasho          #+#    #+#             */
-/*   Updated: 2019/08/29 11:59:39 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/05 10:37:36 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static const char	*check_sp(const char *str)
 	return ((const char *)str);
 }
 
-__int128			ft_atoi(const char *nptr)
+long long int		ft_atoi(const char *nptr)
 {
-	__int128		res;
+	long long int	res;
 	int				min;
 
 	min = 0;
