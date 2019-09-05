@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:03:13 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/05 11:22:50 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/05 15:42:57 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static int			check_get_ants_errors(char *input)
 {
-	if (ISCOMMENT(input))
-		return (0);
-	if (!errno && ISCOMMAND(input) && SETERRNO(5))
+	if (!errno && ISCOMMAND(input) && ISSTART(input) && SETERRNO(5))
 		perror("ERROR. No ants.");
 	else if (!errno && !ISDIGIT(*input) && SETERRNO(5))
 		perror("ERROR. Wrong input.");
@@ -35,10 +33,10 @@ long long int		get_ants(void)
 	ants = 0;
 	while (!errno && (input = lemin_get_line()))
 	{
-		if (check_get_ants_errors(input) && !ft_strdel(&input))
-			return (0);
-		if (ISCOMMENT(input))
+		if (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input)))
 			ft_strdel(&input);
+		if (input && check_get_ants_errors(input) && !ft_strdel(&input))
+			return (0);
 		if (input && ((ants = ft_atoi(input)) < 1) && !ft_strdel(&input))
 		{
 			SETERRNO(5);
