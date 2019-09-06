@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/06 11:28:04 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/06 15:38:34 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,29 @@
 
 static void		valid_room_coords(t_rooms *room, char *coords)
 {
-	if (!(coords = ft_strchr(coords, ' ')) || (!ft_isdigit(*(++coords)) &&
+	if (!(coords = ft_strchr(coords, ' ')) || (!ISDIGIT(*(++coords)) &&
 		*coords != '-' && *coords != '+'))
 		SETANDPERROR(5, "ERROR. Broken coord_x.");
-	if (coords && (*coords == '-' || *coords == '+'))
+	else if ((*coords == '-' || *coords == '+'))
 		SETANDPERROR(5, "ERROR. Forbidden sign '+' or '-'");
-	if (!errno && (room->coord_x = ft_atoi(coords)) < 0)
+	else if ((room->coord_x = ft_atoi(coords)) < 0)
 		SETANDPERROR(5, "ERROR. Coords must be more or equal 0.");
+	if (!errno)
+		while (ISDIGIT(*coords))
+			++coords;
+	if (!*coords || *(coords++) != ' ')
+		SETANDPERROR(5, "ERROR. Broken coord_y.");
+	else if (!ISDIGIT(*coords) && *coords != '-' && *coords != '+')
+		SETANDPERROR(5, "ERROR. Broken coord_y.");
+	else if (*coords == '-' || *coords == '+')
+		SETANDPERROR(5, "ERROR. Forbidden sign '+' or '-'");
+	else if ((room->coord_y = ft_atoi(coords)) < 0)
+		SETANDPERROR(5, "ERROR. Coords must be more or equal 0.");
+	if (!errno)
+		while (ISDIGIT(*coords))
+			++coords;
+	if (!errno && *coords != 0)
+		SETANDPERROR(5, "ERROR. Invalid input after coord_y.");
 }
 
 static char		*valid_room_name(char *name)
@@ -37,7 +53,7 @@ static char		*valid_room_name(char *name)
 			if (*(tmp++) == '-')
 				SETANDPERROR(5, "ERROR. Forbidden symbol '-' in room name.");
 	}
-	if (!errno && (ft_isalpha(*name) || ft_isdigit(*name)))
+	if (!errno && (ft_isalpha(*name) || ISDIGIT(*name)))
 		return (ft_strndup(name, ft_strlen_chr(name, ' ')));
 	return (NULL);
 }
