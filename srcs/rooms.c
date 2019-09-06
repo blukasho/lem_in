@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/05 17:29:47 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/06 10:12:09 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 
 static char		*valid_room_name(char *name)
 {
-	//need valid '-' in name room 
 	if (!name && SETERRNO(5))
 		perror("ERROR. NULL room name.");
 	if (!errno && *name == 'L' && SETERRNO(5))
 		perror("ERROR. Room will never start with the character 'L'");
+	if (!errno && ft_strchr(name, '-') && SETERRNO(5))
+		perror("ERROR. Forbidden symbol '-' in room name.");
 	else if (!errno && (ft_isalpha(*name) || ft_isdigit(*name)))
 		return (ft_strndup(name, ft_strlen_chr(name, ' ')));
 	return (NULL);

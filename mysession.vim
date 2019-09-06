@@ -9,6 +9,8 @@ nmap gx <Plug>NetrwBrowseX
 nnoremap qq :bd
 nnoremap tc :tabclose
 nnoremap tn :tabnew
+nnoremap th :tabp
+nnoremap tl :tabn
 nnoremap tt :tabp
 nnoremap vv :vsplit 
 nnoremap wq :wa:mksession! mysession.vim:qa
@@ -35,18 +37,21 @@ set laststatus=2
 set modelines=1
 set mouse=a
 set nrformats=bin,hex
+set printoptions=paper:a4
 set ruler
+set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 set scrolloff=5
 set shiftwidth=4
 set showcmd
 set showmatch
 set smartcase
 set smartindent
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tabstop=4
 set ttimeout
 set ttimeoutlen=100
 set wildmenu
-set window=0
+set window=1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -57,24 +62,23 @@ endif
 set shortmess=aoO
 badd +20 srcs/main.c
 badd +1 srcs/read.c
-badd +53 includes/lemin.h
+badd +30 includes/lemin.h
 badd +1 Makefile
 badd +23 /usr/include/errno.h
-badd +103 /usr/include/sys/errno.h
+badd +18 /usr/include/sys/errno.h
 badd +1 maps/error
 badd +64 /usr/include/limits.h
 badd +6 /usr/include/machine/limits.h
 badd +107 /usr/include/i386/limits.h
-badd +58 srcs/rooms.c
+badd +1 srcs/rooms.c
 badd +31 srcs/init.c
 badd +136 libft/includes/libft.h
 badd +4 libft/srcs/ft_isalpha.c
 badd +18 libft/srcs/ft_strndup.c
-badd +18 libft/srcs/ft_strchr.c
 badd +21 libft/srcs/ft_strlen_chr.c
 argglobal
 silent! argdel *
-$argadd srcs/main.c
+argadd srcs/main.c
 set stal=2
 edit srcs/rooms.c
 set splitbelow splitright
@@ -85,10 +89,12 @@ wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 argglobal
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -105,6 +111,8 @@ setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -134,7 +142,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -149,7 +156,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -165,10 +171,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal smartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -194,15 +201,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 26 - ((25 * winheight(0) + 35) / 70)
+let s:l = 62 - ((47 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 0
+62
+normal! 05|
 wincmd w
 argglobal
 edit srcs/read.c
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -219,6 +228,8 @@ setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -248,7 +259,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -263,7 +273,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -279,10 +288,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal smartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -308,15 +318,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 21 - ((20 * winheight(0) + 35) / 70)
+let s:l = 34 - ((27 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-21
-normal! 031|
+34
+normal! 023|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 tabedit includes/lemin.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -326,10 +336,12 @@ wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 argglobal
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -346,6 +358,8 @@ setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -375,7 +389,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -390,7 +403,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -406,10 +418,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal smartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -435,15 +448,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 53 - ((52 * winheight(0) + 35) / 70)
+let s:l = 51 - ((35 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-53
+51
 normal! 027|
 wincmd w
 argglobal
 edit Makefile
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -460,6 +475,8 @@ setlocal colorcolumn=
 setlocal comments=sO:#\ -,mO:#\ \ ,b:#
 setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -489,7 +506,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -504,7 +520,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -520,10 +535,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal nosmartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -549,15 +565,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 13 - ((12 * winheight(0) + 35) / 70)
+let s:l = 13 - ((9 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 13
 normal! 040|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 tabedit /usr/include/sys/errno.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -567,10 +583,12 @@ wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 argglobal
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -587,6 +605,8 @@ setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -616,7 +636,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -631,7 +650,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -647,10 +665,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal readonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal smartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -676,15 +695,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 103 - ((21 * winheight(0) + 35) / 70)
+let s:l = 18 - ((0 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-103
+18
 normal! 0
 wincmd w
 argglobal
 edit maps/error
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -701,6 +722,8 @@ setlocal colorcolumn=
 setlocal comments=:#
 setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -730,7 +753,6 @@ setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
@@ -745,7 +767,6 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
-setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -761,10 +782,11 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
-setlocal signcolumn=auto
 setlocal smartindent
 setlocal softtabstop=0
 setlocal nospell
@@ -790,15 +812,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 35) / 70)
+let s:l = 4 - ((2 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 4
 normal! 018|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 98 + 98) / 197)
-exe 'vert 2resize ' . ((&columns * 98 + 98) / 197)
+exe 'vert 1resize ' . ((&columns * 95 + 96) / 192)
+exe 'vert 2resize ' . ((&columns * 96 + 96) / 192)
 tabnext 1
 set stal=1
 if exists('s:wipebuf')
@@ -806,7 +828,6 @@ if exists('s:wipebuf')
 endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20 shortmess=filnxtToO
-set winminheight=1 winminwidth=1
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
