@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/06 15:38:34 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:05:10 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,17 @@ t_rooms		*get_rooms(void)
 		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input))))
 			ft_strdel(&input);
 		else if (!errno && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
-			rooms = add_room(rooms, lemin_get_line(), STARTROOM);
+		{
+			if (!(input = lemin_get_line()))
+				SETANDPERROR(5, "ERROR. No start room.");
+			else
+				rooms = add_room(rooms, input, STARTROOM);
+		}
 //test arch
 		else
 			SETANDPERROR(5, "ERROR. No \"##start\" command.");
 	}
+	if (input)
+		ft_strdel(&input);
 	return (rooms);
 }

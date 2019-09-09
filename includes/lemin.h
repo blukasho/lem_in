@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/06 10:59:26 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 10:57:32 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ t_rooms				*get_t_rooms(char *name);
 t_rooms				*get_rooms(void);
 t_lemin				*lemin_read_input(void);
 long long int		get_ants(void);
+int					clear_t_lemin(t_lemin *lemin);
+int					clear_t_rooms(t_rooms *rooms);
 
 #endif
