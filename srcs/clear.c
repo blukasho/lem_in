@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 10:58:01 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 13:14:15 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,24 @@ int			clear_t_rooms(t_rooms *rooms)
 
 	if (!rooms)
 		return (0);
-	tmp = rooms;
 	while (rooms)
 	{
+		if ((rooms->type) == STARTROOM)
+			ft_printf("STARTROOM delete.\n");
+		else if ((rooms->type) == ENDROOM)
+			ft_printf("ENDROOM delete.\n");
+		else if ((rooms->type) == DEFAULTROOM)
+			ft_printf("DEFAULTROOM delete.\n");
+		else
+			ft_printf("UKNOWNROOM delete.\n");
 		if (rooms->name)
+		{
+			ft_printf("room name |%s| delete.\n", rooms->name);
 			ft_strdel(&(rooms->name));
+		}
+		tmp = rooms;
 		rooms = rooms->next;
+		free(tmp);
 	}
-	free(tmp);
 	return (0);
 }

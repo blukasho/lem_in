@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:03:13 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/05 15:42:57 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 13:39:29 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int			check_get_ants_errors(char *input)
 {
-	if (!errno && ISCOMMAND(input) && ISSTART(input) && SETERRNO(5))
+	if (!errno && ISCOMMAND(input) && (ISSTART(input) || ISEND(input))
+		&& SETERRNO(5))
 		perror("ERROR. No ants.");
 	else if (!errno && !ISDIGIT(*input) && SETERRNO(5))
 		perror("ERROR. Wrong input.");

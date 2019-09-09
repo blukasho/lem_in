@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 11:05:10 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 13:49:29 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static void		valid_room_coords(t_rooms *room, char *coords)
 {
-	if (!(coords = ft_strchr(coords, ' ')) || (!ISDIGIT(*(++coords)) &&
-		*coords != '-' && *coords != '+'))
+	if (!coords)
+		SETANDPERROR(5, "ERROR. Broken coords.");
+	if (!errno && (!(coords = ft_strchr(coords, ' ')) || (!ISDIGIT(*(++coords)) &&
+		*coords != '-' && *coords != '+')))
 		SETANDPERROR(5, "ERROR. Broken coord_x.");
 	else if ((*coords == '-' || *coords == '+'))
 		SETANDPERROR(5, "ERROR. Forbidden sign '+' or '-'");
@@ -24,7 +26,7 @@ static void		valid_room_coords(t_rooms *room, char *coords)
 	if (!errno)
 		while (ISDIGIT(*coords))
 			++coords;
-	if (!*coords || *(coords++) != ' ')
+	if (!errno && (!*coords || *(coords++) != ' '))
 		SETANDPERROR(5, "ERROR. Broken coord_y.");
 	else if (!ISDIGIT(*coords) && *coords != '-' && *coords != '+')
 		SETANDPERROR(5, "ERROR. Broken coord_y.");
@@ -71,6 +73,7 @@ static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
 		while (rooms->next)
 			rooms = rooms->next;
 		rooms->next = get_t_rooms(NULL);
+		rooms = rooms->next;
 	}
 	rooms->type = type;
 	if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
@@ -80,27 +83,53 @@ static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
 	return ((tmp ? tmp : rooms));
 }
 
-t_rooms		*get_rooms(void)
+static t_rooms	*add_start_end_rooms(t_rooms *rooms, int type)
 {
-	t_rooms	*rooms;
-	char	*input;
+	char		*input;
+
+	input = NULL;
+	if (type == STARTROOM)
+	{
+		if (!(input = lemin_get_line()))
+			SETANDPERROR(5, "ERROR. No start room.");
+		else
+			rooms = add_room(rooms, input, STARTROOM);
+	}
+	else if (type == ENDROOM)
+	{
+		if (!(input = lemin_get_line()))
+			SETANDPERROR(5, "ERROR. No end room.");
+		else
+			rooms = add_room(rooms, input, ENDROOM);
+	}
+	if (input)
+		ft_strdel(&input);
+	return (rooms);
+}
+
+t_rooms			*get_rooms(void)
+{
+	t_rooms		*rooms;
+	char		*input;
 
 	rooms = NULL;
 	while (!errno && (input = lemin_get_line()))
 	{
-		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input))))
+		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input) && !ISEND(input))))
 			ft_strdel(&input);
-		else if (!errno && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
-		{
-			if (!(input = lemin_get_line()))
-				SETANDPERROR(5, "ERROR. No start room.");
-			else
-				rooms = add_room(rooms, input, STARTROOM);
-		}
-//test arch
-		else
-			SETANDPERROR(5, "ERROR. No \"##start\" command.");
+		else if (!errno && !rooms && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
+			rooms = add_start_end_rooms(rooms, STARTROOM);
+		else if (!errno && rooms && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
+			return (add_start_end_rooms(rooms, ENDROOM));
+		else if (!errno && rooms)
+			add_room(rooms, input, DEFAULTROOM);
+		if (input)
+			ft_strdel(&input);
 	}
+	if (!rooms)
+		SETANDPERROR(5, "ERROR. No \"##start\" command.");
+	else
+		SETANDPERROR(5, "ERROR. No \"##end\" command.");
 	if (input)
 		ft_strdel(&input);
 	return (rooms);

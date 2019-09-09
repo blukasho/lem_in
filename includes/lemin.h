@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 10:57:32 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:28:22 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ISCOMMENT(str) ((str[0] == '#' && str[1] != '#'))
 # define ISDIGIT(x) ((x >= '0' && x <= '9'))
 # define ISSTART(str) (!ft_strcmp(str, "##start"))
+# define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
 # define MAXANTS 1 //LLONG_MAX
 
