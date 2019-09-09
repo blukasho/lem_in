@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 13:49:29 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 16:48:02 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_rooms			*get_rooms(void)
 		else if (!errno && !rooms && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
 			rooms = add_start_end_rooms(rooms, STARTROOM);
 		else if (!errno && rooms && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
-			return (add_start_end_rooms(rooms, ENDROOM));
+			add_start_end_rooms(rooms, ENDROOM);
 		else if (!errno && rooms)
 			add_room(rooms, input, DEFAULTROOM);
 		if (input)

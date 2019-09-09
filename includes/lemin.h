@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 11:28:22 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/09 16:48:02 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct		s_rooms
 
 typedef struct		s_lemin
 {
+	int				start;
+	int				end;
 	__int128		ants;
 	t_rooms			*rooms;
 }					t_lemin;
