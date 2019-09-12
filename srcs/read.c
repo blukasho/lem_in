@@ -6,19 +6,53 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:55:34 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 13:39:48 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/12 15:33:45 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
+static int	check_rooms_errors(t_lemin *lemin)
+{
+	if (!(lemin->rooms))
+		SETANDPERROR(5, "ERROR. No rooms.");
+	else if (!lemin->start_room)
+		SETANDPERROR(5, "ERROR. No start room.");
+	else if (!lemin->end_room)
+		SETANDPERROR(5, "ERROR. No end room.");
+	return ((!errno ? 0 : 1));
+}
+
 t_lemin		*lemin_read_input(void)
 {
 	t_lemin	*lemin;
+	char	*input;
 
-	lemin = get_t_lemin();
+	if (!(lemin = get_t_lemin()))
+		return (NULL);
 	lemin->ants = get_ants();
-	lemin->rooms = get_rooms();
+	while (!errno && (input = lemin_get_line()) && ft_is_room(input))
+	{
+		if (ISCOMMENT(input) || (ISCOMMAND(input) && (!ISSTART(input) || !ISEND(input))))
+			ft_strdel(&input);
+		else
+			lemin->rooms = add_room(lemin, input)
+		if (input)
+			ft_strdel(&input);
+	}
+//	if (!errno && !input && SETANDPERROR(5, "ERROR. Empty string."))
+//		return (lemin);
+	if (!errno && check_rooms_errors(lemin))
+		return (lemin);
+//	else if (!errno && (lemin->links = add_link(lemin->links)))
+//		ft_strdel(&input);
+//	while (!errno && (input = lemin_get_line()) && ft_is_link(input))
+//	{
+//		lemin->links = add_link(lemin->links, input);
+//		ft_strdel(&input);
+//	}
+	if (input)
+		ft_strdel(&input);
 	return (lemin);
 }
 

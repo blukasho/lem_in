@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 16:48:02 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/12 15:33:45 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,28 @@ static char		*valid_room_name(char *name)
 	return (NULL);
 }
 
-static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
+t_rooms			*add_room(t_lemin *lemin, char *input)
 {
-	t_rooms		*tmp;
+	t_rooms		*room;
 
-	tmp = NULL;
-	if (!rooms)
-		rooms = get_t_rooms(NULL);
+	room = NULL;
+	if (!lemin->rooms)
+		room = get_t_rooms(NULL);
 	else
 	{
-		tmp = rooms;
-		while (rooms->next)
-			rooms = rooms->next;
-		rooms->next = get_t_rooms(NULL);
-		rooms = rooms->next;
+		room = lemin->rooms;
+		while (room->next)
+			room = room->next;
+		room->next = get_t_rooms(NULL);
+		room = room->next;
 	}
-	rooms->type = type;
-	if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
-		perror("ERROR. rooms.c:valid_room_name().");
-	if (!errno)
-		valid_room_coords(rooms, input);
-	return ((tmp ? tmp : rooms));
+	room->type = get_room_type(input);
+	input = skip_commands_comments(input);
+//	if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
+//		perror("ERROR. rooms.c:valid_room_name().");
+//	if (!errno)
+//		valid_room_coords(rooms, input);
+//	return ((tmp ? tmp : rooms));
 }
 
 static t_rooms	*add_start_end_rooms(t_rooms *rooms, int type)

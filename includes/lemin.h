@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 16:48:02 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/12 14:42:26 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,21 @@ typedef struct		s_rooms
 
 typedef struct		s_lemin
 {
-	int				start;
-	int				end;
 	__int128		ants;
 	t_rooms			*rooms;
+	t_rooms			*start_room;
+	t_rooms			*end_room;
 }					t_lemin;
 
 char				*lemin_get_line(void);
 t_lemin				*get_t_lemin(void);
 t_rooms				*get_t_rooms(char *name);
-t_rooms				*get_rooms(void);
+t_rooms				*add_room(t_lemin *lemin, char *input);
 t_lemin				*lemin_read_input(void);
 long long int		get_ants(void);
 int					clear_t_lemin(t_lemin *lemin);
 int					clear_t_rooms(t_rooms *rooms);
+
+int					ft_is_room(char *input);
 
 #endif
