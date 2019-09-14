@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/14 15:04:13 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:19:48 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,13 @@ static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
 		rooms = rooms->next;
 	}
 	rooms->type = type;
-	if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
+	if (type == STARTROOM)
+		add_start_end_rooms(rooms, input, type);
+	else if (type == ENDROOM)
+		add_start_end_rooms(rooms, input, type);
+	else if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
 		perror("ERROR. rooms.c:valid_room_name().");
-	if (!errno)
+	if (!errno && type == DEFAULTROOM)
 		valid_room_coords(rooms, input);
 	return ((tmp ? tmp : rooms));
 }
@@ -117,19 +121,19 @@ char			*get_rooms(t_lemin *lemin)
 	{
 		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input) && !ISEND(input))))
 			ft_strdel(&input);
-		else if (!errno && !rooms && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
-			rooms = add_start_end_rooms(rooms, STARTROOM);
-		else if (!errno && rooms && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
-			add_start_end_rooms(rooms, ENDROOM);
-		else if (!errno && rooms)
-			add_room(rooms, input, DEFAULTROOM);
+		else if (!errno && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
+			rooms = add_room(rooms, NULL, STARTROOM);
+		else if (!errno && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
+			add_start_end_rooms(rooms, NULL, ENDROOM);
+		else if (!errno)
+			rooms = add_room(rooms, input, DEFAULTROOM);
 		if (input)
 			ft_strdel(&input);
 	}
-	if (!rooms)
-		SETANDPERROR(5, "ERROR. No \"##start\" command.");
-	else
-		SETANDPERROR(5, "ERROR. No \"##end\" command.");
+//	if (!rooms)
+//		SETANDPERROR(5, "ERROR. No \"##start\" command.");
+//	else
+//		SETANDPERROR(5, "ERROR. No \"##end\" command.");
 	if (input)
 		ft_strdel(&input);
 	return (rooms);
