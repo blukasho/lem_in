@@ -55,11 +55,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 Makefile
-badd +33 includes/lemin.h
-badd +1 srcs/main.c
-badd +1 srcs/read.c
-badd +113 srcs/rooms.c
+badd +0 Makefile
+badd +0 includes/lemin.h
+badd +0 srcs/main.c
+badd +0 srcs/read.c
+badd +0 srcs/rooms.c
 argglobal
 silent! argdel *
 $argadd Makefile
@@ -176,12 +176,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 20 - ((19 * winheight(0) + 35) / 70)
+let s:l = 14 - ((13 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
-normal! 029|
+14
+normal! 0
 tabedit srcs/rooms.c
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -300,12 +300,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 114 - ((46 * winheight(0) + 35) / 70)
+let s:l = 57 - ((56 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-114
-normal! 0
+57
+normal! 05|
 wincmd w
 argglobal
 edit srcs/read.c
@@ -414,12 +414,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 39 - ((19 * winheight(0) + 35) / 70)
+let s:l = 50 - ((49 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-39
-normal! 08|
+50
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
 exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
@@ -433,8 +433,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 101 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 101 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 argglobal
 setlocal noautoindent
 setlocal backupcopy=
@@ -541,7 +541,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 26 - ((24 * winheight(0) + 35) / 70)
+let s:l = 26 - ((25 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -655,15 +655,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 13 - ((12 * winheight(0) + 35) / 70)
+let s:l = 13 - ((12 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 13
-normal! 048|
+normal! 042|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 101 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 101 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 tabnext 2
 set stal=1
 if exists('s:wipebuf')
