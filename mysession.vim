@@ -55,11 +55,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 Makefile
-badd +0 includes/lemin.h
-badd +0 srcs/main.c
-badd +0 srcs/read.c
-badd +0 srcs/rooms.c
+badd +1 Makefile
+badd +44 includes/lemin.h
+badd +1 srcs/main.c
+badd +1 srcs/read.c
+badd +133 srcs/rooms.c
 argglobal
 silent! argdel *
 $argadd Makefile
@@ -300,12 +300,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 133 - ((65 * winheight(0) + 35) / 70)
+let s:l = 113 - ((45 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-133
-normal! 014|
+113
+normal! 023|
 wincmd w
 argglobal
 edit srcs/read.c
@@ -414,7 +414,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 39 - ((38 * winheight(0) + 35) / 70)
+let s:l = 39 - ((19 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -541,12 +541,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 44 - ((43 * winheight(0) + 35) / 71)
+let s:l = 33 - ((31 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-44
-normal! 025|
+33
+normal! 08|
 wincmd w
 argglobal
 edit Makefile
@@ -655,7 +655,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 13 - ((12 * winheight(0) + 35) / 71)
+let s:l = 13 - ((12 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -664,7 +664,7 @@ normal! 048|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 101 + 101) / 203)
 exe 'vert 2resize ' . ((&columns * 101 + 101) / 203)
-tabnext 2
+tabnext 3
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
