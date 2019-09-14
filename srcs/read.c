@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:55:34 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 13:39:48 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:04:08 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 t_lemin		*lemin_read_input(void)
 {
 	t_lemin	*lemin;
+	char	*input;
 
 	lemin = get_t_lemin();
 	lemin->ants = get_ants();
-	lemin->rooms = get_rooms();
+	input = get_rooms(lemin);
 	return (lemin);
 }
 
