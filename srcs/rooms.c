@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/14 16:19:48 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:50:18 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,42 @@ static char		*valid_room_name(char *name)
 	return (NULL);
 }
 
-static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
+static t_rooms	*add_start_end_rooms(t_rooms *rooms, char *input, int type)
+{
+	while (!errno && (input = lemin_get_line()) && (ISCOMMENT(input) || ISCOMMAND(input)))
+		ft_strdel(&input);
+//	char		*input;
+//
+//	input = NULL;
+//	if (type == STARTROOM)
+//	{
+//		if (!(input = lemin_get_line()))
+//			SETANDPERROR(5, "ERROR. No start room.");
+//		else
+//			rooms = add_room(rooms, input, STARTROOM);
+//	}
+//	else if (type == ENDROOM)
+//	{
+//		if (!(input = lemin_get_line()))
+//			SETANDPERROR(5, "ERROR. No end room.");
+//		else
+//			rooms = add_room(rooms, input, ENDROOM);
+//	}
+//	if (input)
+//		ft_strdel(&input);
+//	return (rooms);
+}
+
+static void		add_room(t_lemin *lemin, char *input, int type)
 {
 	t_rooms		*tmp;
 
 	tmp = NULL;
-	if (!rooms)
-		rooms = get_t_rooms(NULL);
+	if (!(lemin->rooms))
+		lemin->rooms = get_t_rooms(NULL);
 	else
 	{
-		tmp = rooms;
+		tmp = lemin->rooms;
 		while (rooms->next)
 			rooms = rooms->next;
 		rooms->next = get_t_rooms(NULL);
@@ -84,49 +110,25 @@ static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
 		perror("ERROR. rooms.c:valid_room_name().");
 	if (!errno && type == DEFAULTROOM)
 		valid_room_coords(rooms, input);
-	return ((tmp ? tmp : rooms));
-}
-
-static t_rooms	*add_start_end_rooms(t_rooms *rooms, int type)
-{
-	char		*input;
-
-	input = NULL;
-	if (type == STARTROOM)
-	{
-		if (!(input = lemin_get_line()))
-			SETANDPERROR(5, "ERROR. No start room.");
-		else
-			rooms = add_room(rooms, input, STARTROOM);
-	}
-	else if (type == ENDROOM)
-	{
-		if (!(input = lemin_get_line()))
-			SETANDPERROR(5, "ERROR. No end room.");
-		else
-			rooms = add_room(rooms, input, ENDROOM);
-	}
-	if (input)
-		ft_strdel(&input);
-	return (rooms);
 }
 
 char			*get_rooms(t_lemin *lemin)
 {
-	t_rooms		*rooms;
 	char		*input;
 
-	rooms = lemin->rooms;
 	while (!errno && (input = lemin_get_line()))
 	{
-		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input) && !ISEND(input))))
+		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input)
+			&& !ISEND(input))))
 			ft_strdel(&input);
 		else if (!errno && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
-			rooms = add_room(rooms, NULL, STARTROOM);
+			add_room(lemin, NULL, STARTROOM);
 		else if (!errno && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
-			add_start_end_rooms(rooms, NULL, ENDROOM);
+			add_room(lemin, NULL, ENDROOM);
+		else if (!errno && !ISLINK(input))
+			add_room(lemin, input, DEFAULTROOM);
 		else if (!errno)
-			rooms = add_room(rooms, input, DEFAULTROOM);
+			return (input);
 		if (input)
 			ft_strdel(&input);
 	}
@@ -134,7 +136,5 @@ char			*get_rooms(t_lemin *lemin)
 //		SETANDPERROR(5, "ERROR. No \"##start\" command.");
 //	else
 //		SETANDPERROR(5, "ERROR. No \"##end\" command.");
-	if (input)
-		ft_strdel(&input);
-	return (rooms);
+	return (input);
 }

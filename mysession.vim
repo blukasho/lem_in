@@ -63,7 +63,7 @@ badd +1 Makefile
 badd +26 includes/lemin.h
 badd +1 srcs/main.c
 badd +1 srcs/read.c
-badd +105 srcs/rooms.c
+badd +86 srcs/rooms.c
 argglobal
 silent! argdel *
 argadd Makefile
@@ -310,12 +310,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 86 - ((35 * winheight(0) + 25) / 50)
+let s:l = 94 - ((12 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-86
-normal! 037|
+94
+normal! 0
 wincmd w
 argglobal
 edit srcs/read.c
