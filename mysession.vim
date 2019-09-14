@@ -56,10 +56,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 Makefile
-badd +44 includes/lemin.h
+badd +33 includes/lemin.h
 badd +1 srcs/main.c
 badd +1 srcs/read.c
-badd +133 srcs/rooms.c
+badd +113 srcs/rooms.c
 argglobal
 silent! argdel *
 $argadd Makefile
@@ -192,8 +192,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 101 + 101) / 203)
-exe 'vert 2resize ' . ((&columns * 101 + 101) / 203)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 argglobal
 setlocal noautoindent
 setlocal backupcopy=
@@ -300,12 +300,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 113 - ((45 * winheight(0) + 35) / 70)
+let s:l = 114 - ((46 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-113
-normal! 023|
+114
+normal! 0
 wincmd w
 argglobal
 edit srcs/read.c
@@ -421,8 +421,8 @@ normal! zt
 39
 normal! 08|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 101 + 101) / 203)
-exe 'vert 2resize ' . ((&columns * 101 + 101) / 203)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 tabedit includes/lemin.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -433,8 +433,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 101 + 101) / 203)
-exe 'vert 2resize ' . ((&columns * 101 + 101) / 203)
+exe 'vert 1resize ' . ((&columns * 101 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 101 + 106) / 213)
 argglobal
 setlocal noautoindent
 setlocal backupcopy=
@@ -541,12 +541,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 33 - ((31 * winheight(0) + 35) / 70)
+let s:l = 26 - ((24 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-33
-normal! 08|
+26
+normal! 023|
 wincmd w
 argglobal
 edit Makefile
@@ -662,9 +662,9 @@ normal! zt
 13
 normal! 048|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 101 + 101) / 203)
-exe 'vert 2resize ' . ((&columns * 101 + 101) / 203)
-tabnext 3
+exe 'vert 1resize ' . ((&columns * 101 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 101 + 106) / 213)
+tabnext 2
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
