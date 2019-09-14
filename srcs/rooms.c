@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/14 15:04:13 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:50:18 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,77 +60,81 @@ static char		*valid_room_name(char *name)
 	return (NULL);
 }
 
-static t_rooms	*add_room(t_rooms *rooms, char *input, int type)
+static t_rooms	*add_start_end_rooms(t_rooms *rooms, char *input, int type)
+{
+	while (!errno && (input = lemin_get_line()) && (ISCOMMENT(input) || ISCOMMAND(input)))
+		ft_strdel(&input);
+//	char		*input;
+//
+//	input = NULL;
+//	if (type == STARTROOM)
+//	{
+//		if (!(input = lemin_get_line()))
+//			SETANDPERROR(5, "ERROR. No start room.");
+//		else
+//			rooms = add_room(rooms, input, STARTROOM);
+//	}
+//	else if (type == ENDROOM)
+//	{
+//		if (!(input = lemin_get_line()))
+//			SETANDPERROR(5, "ERROR. No end room.");
+//		else
+//			rooms = add_room(rooms, input, ENDROOM);
+//	}
+//	if (input)
+//		ft_strdel(&input);
+//	return (rooms);
+}
+
+static void		add_room(t_lemin *lemin, char *input, int type)
 {
 	t_rooms		*tmp;
 
 	tmp = NULL;
-	if (!rooms)
-		rooms = get_t_rooms(NULL);
+	if (!(lemin->rooms))
+		lemin->rooms = get_t_rooms(NULL);
 	else
 	{
-		tmp = rooms;
+		tmp = lemin->rooms;
 		while (rooms->next)
 			rooms = rooms->next;
 		rooms->next = get_t_rooms(NULL);
 		rooms = rooms->next;
 	}
 	rooms->type = type;
-	if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
-		perror("ERROR. rooms.c:valid_room_name().");
-	if (!errno)
-		valid_room_coords(rooms, input);
-	return ((tmp ? tmp : rooms));
-}
-
-static t_rooms	*add_start_end_rooms(t_rooms *rooms, int type)
-{
-	char		*input;
-
-	input = NULL;
 	if (type == STARTROOM)
-	{
-		if (!(input = lemin_get_line()))
-			SETANDPERROR(5, "ERROR. No start room.");
-		else
-			rooms = add_room(rooms, input, STARTROOM);
-	}
+		add_start_end_rooms(rooms, input, type);
 	else if (type == ENDROOM)
-	{
-		if (!(input = lemin_get_line()))
-			SETANDPERROR(5, "ERROR. No end room.");
-		else
-			rooms = add_room(rooms, input, ENDROOM);
-	}
-	if (input)
-		ft_strdel(&input);
-	return (rooms);
+		add_start_end_rooms(rooms, input, type);
+	else if (!(rooms->name = valid_room_name(input)) && !errno && SETERRNO(5))
+		perror("ERROR. rooms.c:valid_room_name().");
+	if (!errno && type == DEFAULTROOM)
+		valid_room_coords(rooms, input);
 }
 
 char			*get_rooms(t_lemin *lemin)
 {
-	t_rooms		*rooms;
 	char		*input;
 
-	rooms = lemin->rooms;
 	while (!errno && (input = lemin_get_line()))
 	{
-		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input) && !ISEND(input))))
+		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input)
+			&& !ISEND(input))))
 			ft_strdel(&input);
-		else if (!errno && !rooms && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
-			rooms = add_start_end_rooms(rooms, STARTROOM);
-		else if (!errno && rooms && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
-			add_start_end_rooms(rooms, ENDROOM);
-		else if (!errno && rooms)
-			add_room(rooms, input, DEFAULTROOM);
+		else if (!errno && ISCOMMAND(input) && ISSTART(input) && !ft_strdel(&input))
+			add_room(lemin, NULL, STARTROOM);
+		else if (!errno && ISCOMMAND(input) && ISEND(input) && !ft_strdel(&input))
+			add_room(lemin, NULL, ENDROOM);
+		else if (!errno && !ISLINK(input))
+			add_room(lemin, input, DEFAULTROOM);
+		else if (!errno)
+			return (input);
 		if (input)
 			ft_strdel(&input);
 	}
-	if (!rooms)
-		SETANDPERROR(5, "ERROR. No \"##start\" command.");
-	else
-		SETANDPERROR(5, "ERROR. No \"##end\" command.");
-	if (input)
-		ft_strdel(&input);
-	return (rooms);
+//	if (!rooms)
+//		SETANDPERROR(5, "ERROR. No \"##start\" command.");
+//	else
+//		SETANDPERROR(5, "ERROR. No \"##end\" command.");
+	return (input);
 }
