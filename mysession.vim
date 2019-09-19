@@ -55,11 +55,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 Makefile
-badd +0 includes/lemin.h
-badd +0 srcs/rooms.c
-badd +0 srcs/read.c
-badd +0 srcs/start_end_rooms.c
+badd +1 Makefile
+badd +62 includes/lemin.h
+badd +85 srcs/rooms.c
+badd +1 srcs/read.c
+badd +1 srcs/start_end_rooms.c
 argglobal
 silent! argdel *
 $argadd Makefile
@@ -182,12 +182,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 85 - ((37 * winheight(0) + 35) / 70)
+let s:l = 110 - ((58 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-85
-normal! 027|
+110
+normal! 018|
 wincmd w
 argglobal
 edit srcs/read.c
@@ -417,12 +417,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 34 - ((33 * winheight(0) + 35) / 70)
+let s:l = 42 - ((41 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
-normal! 035|
+42
+normal! 015|
 tabedit includes/lemin.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -664,7 +664,7 @@ normal! 066|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
 exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
-tabnext 2
+tabnext 1
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

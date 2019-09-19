@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/19 13:44:45 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/19 14:04:38 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void		valid_room_coords(t_rooms *room, char *coords)
 			++coords;
 	if (!errno && (!*coords || *(coords++) != ' '))
 		SETANDPERROR(5, "ERROR. Broken coord_y.");
-	else if (!ISDIGIT(*coords) && *coords != '-' && *coords != '+')
+	else if (!errno && !ISDIGIT(*coords) && *coords != '-' && *coords != '+')
 		SETANDPERROR(5, "ERROR. Broken coord_y.");
-	else if (*coords == '-' || *coords == '+')
+	else if (!errno && (*coords == '-' || *coords == '+'))
 		SETANDPERROR(5, "ERROR. Forbidden sign '+' or '-'");
-	else if ((room->coord_y = ft_atoi(coords)) < 0)
+	else if (!errno && (room->coord_y = ft_atoi(coords)) < 0)
 		SETANDPERROR(5, "ERROR. Coords must be more or equal 0.");
 	if (!errno)
 		while (ISDIGIT(*coords))
@@ -105,13 +105,17 @@ char			*get_rooms(t_lemin *lemin)
 		else if (!errno && !ISLINK(input))
 			add_room(lemin, input, DEFAULTROOM);
 		else if (!errno)
+		{
+			if (!lemin->start_room)
+				SETANDPERROR(5, "ERROR. No \"##start\" command.");
+			else if (!lemin->end_room)
+				SETANDPERROR(5, "ERROR. No \"##end\" command.");
 			return (input);
+		}
 		if (input)
 			ft_strdel(&input);
 	}
-//	if (!rooms)
-//		SETANDPERROR(5, "ERROR. No \"##start\" command.");
-//	else
-//		SETANDPERROR(5, "ERROR. No \"##end\" command.");
+	if (!errno && !lemin->rooms)
+		SETANDPERROR(5, "ERROR. No rooms.");
 	return (input);
 }
