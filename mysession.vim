@@ -56,10 +56,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 Makefile
-badd +62 includes/lemin.h
-badd +85 srcs/rooms.c
+badd +10 includes/lemin.h
+badd +116 srcs/rooms.c
 badd +1 srcs/read.c
-badd +1 srcs/start_end_rooms.c
+badd +0 srcs/main.c
 argglobal
 silent! argdel *
 $argadd Makefile
@@ -182,12 +182,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 110 - ((58 * winheight(0) + 35) / 70)
+let s:l = 90 - ((38 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-110
-normal! 018|
+90
+normal! 0
 wincmd w
 argglobal
 edit srcs/read.c
@@ -305,7 +305,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
 exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
-tabedit srcs/start_end_rooms.c
+tabedit srcs/main.c
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -417,12 +417,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 42 - ((41 * winheight(0) + 35) / 70)
+let s:l = 36 - ((35 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-42
-normal! 015|
+36
+normal! 026|
 tabedit includes/lemin.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -541,12 +541,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 62 - ((61 * winheight(0) + 35) / 70)
+let s:l = 17 - ((16 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
-normal! 050|
+17
+normal! 030|
 wincmd w
 argglobal
 edit Makefile
