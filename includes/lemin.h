@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/19 13:41:12 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:13:59 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ISSTART(str) (!ft_strcmp(str, "##start"))
 # define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
-# define MAXANTS 1 //LLONG_MAX
+# define MAXANTS 10 //LLONG_MAX
 
 # define DEFAULTROOM 0
 # define STARTROOM 1
@@ -50,6 +50,14 @@ typedef struct		s_lemin
 	t_rooms			*rooms;
 	t_rooms			*start_room;
 	t_rooms			*end_room;
+	char			**map; //rooms len * len
+	//карта комнат
+	//комната не может ссылаться сама на себя
+	//невозможные комнаты
+	//пустые комнаты невозможны
+	//мусор
+	//##start ##end невозможен
+	//старт без ссылки невозможен и конец
 }					t_lemin;
 
 char				*lemin_get_line(void);
