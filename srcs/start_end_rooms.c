@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:07:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/19 13:46:28 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/23 09:12:59 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	add_start_room(t_lemin *lemin, t_rooms *room, char *in)
 		valid_room_coords(room, in);
 	if (!errno)
 		lemin->start_room = room;
+	if (in)
+		ft_strdel(&in);
 	return (0);
 }
 
@@ -41,6 +43,8 @@ static int	add_end_room(t_lemin *lemin, t_rooms *room, char *in)
 		valid_room_coords(room, in);
 	if (!errno)
 		lemin->end_room = room;
+	if (in)
+		ft_strdel(&in);
 	return (0);
 }
 
