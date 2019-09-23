@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/19 16:13:59 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/23 15:01:30 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ int					clear_t_rooms(t_rooms *rooms);
 char				*valid_room_name(char *name);
 void				valid_room_coords(t_rooms *room, char *coords);
 t_rooms				*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms, char *in, int tp);
+int					get_links(char *input, t_lemin *lemin);
+int					get_len_rooms(t_rooms *rooms);
 
 #endif
