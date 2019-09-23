@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/23 15:01:30 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:12:37 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
 # define MAXANTS 10 //LLONG_MAX
+# define FILLCH '0'
 
 # define DEFAULTROOM 0
 # define STARTROOM 1
@@ -37,7 +38,7 @@
 typedef struct		s_rooms
 {
 	char			*name;
-	int				pos;
+	int				pos; //position in graph map
 	int				type;
 	int				coord_x;
 	int				coord_y;
