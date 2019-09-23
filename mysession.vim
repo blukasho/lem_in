@@ -30,6 +30,7 @@ set hidden
 set history=200
 set hlsearch
 set ignorecase
+set imsearch=0
 set incsearch
 set laststatus=2
 set modelines=1
@@ -56,8 +57,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 Makefile
-badd +17 includes/lemin.h
-badd +90 srcs/rooms.c
+badd +21 includes/lemin.h
+badd +57 srcs/rooms.c
 badd +1 srcs/read.c
 badd +1 srcs/main.c
 argglobal
@@ -74,8 +75,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
+exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
 argglobal
 setlocal noautoindent
 setlocal backupcopy=
@@ -182,15 +183,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 121 - ((51 * winheight(0) + 35) / 70)
+let s:l = 117 - ((47 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-121
-normal! 05|
+117
+normal! 08|
 wincmd w
 argglobal
-edit srcs/read.c
+if bufexists('srcs/read.c') | buffer srcs/read.c | else | edit srcs/read.c | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -303,8 +304,8 @@ normal! zt
 17
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
+exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
 tabedit srcs/main.c
 set splitbelow splitright
 set nosplitbelow
@@ -433,8 +434,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
+exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
 argglobal
 setlocal noautoindent
 setlocal backupcopy=
@@ -549,7 +550,7 @@ normal! zt
 normal! 030|
 wincmd w
 argglobal
-edit Makefile
+if bufexists('Makefile') | buffer Makefile | else | edit Makefile | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -662,8 +663,8 @@ normal! zt
 13
 normal! 066|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
+exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
 tabnext 1
 set stal=1
 if exists('s:wipebuf')
