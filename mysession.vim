@@ -60,7 +60,7 @@ badd +1 Makefile
 badd +51 includes/lemin.h
 badd +1 srcs/read.c
 badd +1 srcs/main.c
-badd +42 srcs/links.c
+badd +44 srcs/links.c
 badd +27 srcs/clear.c
 badd +1 libft/srcs/ft_memset.c
 badd +136 libft/includes/libft.h
@@ -427,12 +427,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 44 - ((43 * winheight(0) + 35) / 70)
+let s:l = 28 - ((27 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-44
-normal! 014|
+28
+normal! 0
 wincmd w
 argglobal
 if bufexists('srcs/read.c') | buffer srcs/read.c | else | edit srcs/read.c | endif
