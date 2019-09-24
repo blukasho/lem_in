@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/23 16:13:53 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/24 13:04:24 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int			main(void)
 		print_map(lemin);
 	if (lemin)
 		clear_t_lemin(lemin);
+//	system("leaks -q lem-in");//debug
 	return (0);
 }

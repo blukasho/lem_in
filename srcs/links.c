@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:20:18 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/23 18:06:45 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/24 13:04:24 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	links_prepare_to_read(t_lemin *lemin)
 
 int			get_links(char *input, t_lemin *lemin)
 {
+	if (input)
+		ft_strdel(&input);//debug
 	links_prepare_to_read(lemin);
 	return (0);
 }
