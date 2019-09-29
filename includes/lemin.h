@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/23 16:12:37 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/29 12:49:44 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define SETERRNO(x) (errno = x)
 # define MAXANTS 10 //LLONG_MAX
 # define FILLCH '0'
+# define SETCH '1'
 
 # define DEFAULTROOM 0
 # define STARTROOM 1
@@ -52,9 +53,9 @@ typedef struct		s_lemin
 	t_rooms			*start_room;
 	t_rooms			*end_room;
 	char			**map; //rooms len * len
-	//карта комнат
-	//комната не может ссылаться сама на себя
-	//невозможные комнаты
+	//карта комнат +
+	//комната не может ссылаться сама на себя + 
+	//невозможные комнаты +
 	//пустые комнаты невозможны
 	//мусор
 	//##start ##end невозможен

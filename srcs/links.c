@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:20:18 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/24 18:27:17 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/09/29 12:43:48 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,80 @@ static int	links_prepare_to_read(t_lemin *lemin)
 	return (0);
 }
 
+static int	get_first_room(char *input, t_rooms *rooms)
+{
+	int		val;
+	char	*tmp;
+
+	val = 0;
+	if (!(tmp = ft_strchr(input, '-')))
+	{
+		SETANDPERROR(5, "ERROR. Lost link symbol '-'.");
+		return (0);
+	}
+	tmp = ft_strndup(input, tmp - input);
+	while (tmp && rooms)
+		if (!ft_strcmp(tmp, rooms->name) && !ft_strdel(&tmp))
+			return (rooms->pos);
+		else
+			rooms = rooms->next;
+	if (tmp)
+		ft_strdel(&tmp);
+	SETANDPERROR(5, "ERROR. Unknown room.");
+	return (0);
+}
+
+static int	get_second_room(char *input, t_rooms *rooms)
+{
+	if (errno)
+		return (0);
+	input = ft_strchr(input, '-') + 1;
+	if (!*input)
+		SETANDPERROR(5, "ERROR. Lost link room");
+	else
+	{
+		while (rooms)
+			if (!ft_strcmp(input, rooms->name))
+				return (rooms->pos);
+			else
+				rooms = rooms->next;
+	}
+	SETANDPERROR(5, "ERROR. Unknown room.");
+	return (0);
+}
+
+static int	get_graph_chords(char *input, t_lemin *lemin)
+{
+	int		y;
+	int		x;
+
+	y = get_first_room(input, lemin->rooms);
+	x = get_second_room(input, lemin->rooms);
+	if (!errno && x == y)
+		SETANDPERROR(5, "ERROR. The room cannot refer to itself.");
+	if (!errno && (lemin->map)[y][x] == FILLCH)
+		(lemin->map)[y][x] = SETCH;
+	else if (!errno && (lemin->map)[y][x] == SETCH)
+		SETANDPERROR(5, "ERROR. Link already exists.");
+	return (0);
+}
+
 int			get_links(char *input, t_lemin *lemin)
 {
-	if (input)
-		ft_strdel(&input);//debug
 	links_prepare_to_read(lemin);
+	while (input && !errno)
+	{
+		if (ISCOMMENT(input) || (ISCOMMAND(input) && (!ISSTART(input) &&
+			!ISEND(input))))
+			ft_strdel(&input);
+		else if (ISCOMMAND(input) && (ISSTART(input) || ISEND(input)))
+			SETANDPERROR(5, "ERROR. Forbidden commands.");
+		else
+			get_graph_chords(input, lemin);
+		ft_strdel(&input);
+		input = lemin_get_line();
+	}
+	if (input)
+		ft_strdel(&input);
 	return (0);
 }
