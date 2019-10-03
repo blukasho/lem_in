@@ -11,7 +11,7 @@
 #* ************************************************************************** *#
 
 SRCS=main.c read.c init.c ants.c rooms.c clear.c start_end_rooms.c links.c\
-	 length.c
+	 length.c ways.c
 
 OBJ=$(addprefix $(OBJDIR), $(SRCS:.c=.o))
 
