@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 14:22:27 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/05 08:58:35 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/04 14:14:16 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ t_rooms		*get_t_rooms(char *name)
 	if (name)
 		room->name = name;
 	return (room);
+}
+
+t_way		*get_t_way(int pos)
+{
+	t_way	*way;
+
+	way = (t_way *)malloc(sizeof(t_way));
+	ft_bzero(way, sizeof(t_way));
+	way->pos = pos;
+	return (way);
 }

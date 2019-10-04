@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/03 11:24:11 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/04 20:56:24 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,19 @@ typedef struct		s_rooms
 	struct s_rooms	*next;
 }					t_rooms;
 
+typedef struct		s_way
+{
+	int				pos;
+	struct s_way	*next;
+}					t_way;
+
 typedef struct		s_lemin
 {
 	__int128		ants;
 	t_rooms			*rooms;
 	t_rooms			*start_room;
 	t_rooms			*end_room;
-	t_rooms			**ways;//all ways START->END
+	t_way			**ways;//all ways START->END
 	char			**map; //rooms len * len
 	//карта комнат +
 	//комната не может ссылаться сама на себя + 
@@ -77,5 +83,9 @@ t_rooms				*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms, char *in, int tp
 int					get_links(char *input, t_lemin *lemin);
 int					get_len_rooms(t_rooms *rooms);
 int					lemin_find_ways(t_lemin *lemin);
+t_way				*get_t_way(int pos);
+t_way				**add_way_to_ways(t_way **ways, t_way *way);
+int					clear_ways(t_way **ways);
+int					clear_t_way(t_way *way);
 
 #endif
