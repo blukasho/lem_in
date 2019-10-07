@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/04 20:56:24 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:11:26 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			clear_t_rooms(t_rooms *rooms)
 	return (0);
 }
 
-int			clear_t_way(t_way *way)
+int			clear_way(t_way *way)
 {
 	t_way	*tmp;
 
@@ -72,7 +72,7 @@ int			clear_ways(t_way **ways)
 
 	tmp = ways;
 	while (ways && *ways)
-		clear_t_way(*(ways++));
+		clear_way(*(ways++));
 	if (tmp)
 		free(tmp);
 	return (0);

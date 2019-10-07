@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:35:56 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/07 15:58:03 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:32:55 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ t_way		*cp_way_add_room(t_way *way, int room)
 {
 	t_way	*new_way;
 
+	new_way = NULL;
 	while (way)
 	{
 		new_way = add_room_to_way(new_way, way->pos);
 		way = way->next;
 	}
+	new_way = add_room_to_way(new_way, room);
 	return (new_way);
 }
 
@@ -64,18 +66,19 @@ t_way		**add_way_to_ways(t_way **ways, t_way *way)
 		++i;
 	if (ways)
 	{
+		i += count_ways(ways);
 		tmp = ways;
-		ways = (t_way **)malloc((count_ways(ways) + i) * sizeof(t_way *));
+		ways = (t_way **)malloc((i + 1) * sizeof(t_way *));
 		i = ~0;
 		while (tmp[++i])
 			ways[i] = tmp[i];
-		if (way && ++i)
-			ways[i] = tmp[i];
+		if (way)
+			ways[i] = way;
 		ways[++i] = NULL;
 		free(tmp);
 
 	}
-	else if ((ways = (t_way **)malloc(i * sizeof(t_way *))))
+	else if ((ways = (t_way **)malloc((i + 1) * sizeof(t_way *))))
 	{
 		if (--i && way)
 			*ways = way;

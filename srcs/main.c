@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/03 11:20:17 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:28:17 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int			main(void)
 
 	lemin = lemin_read_input();
 	if (!errno)
-		lemin_find_ways(lemin);//
+	{
+		while (lemin_find_ways(lemin))
+			;
+	}
 	if (lemin && (lemin->rooms))
 	{
 		rooms = lemin->rooms;
