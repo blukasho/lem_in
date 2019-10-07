@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:20:18 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/03 11:24:11 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:25:04 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ static int	links_prepare_to_read(t_lemin *lemin)
 
 static int	get_first_room(char *input, t_rooms *rooms)
 {
-	int		val;
 	char	*tmp;
 
-	val = 0;
 	if (!(tmp = ft_strchr(input, '-')))
 	{
 		SETANDPERROR(5, "ERROR. Lost link symbol '-'.");

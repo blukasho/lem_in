@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/04 20:56:24 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:58:03 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ t_way				*get_t_way(int pos);
 t_way				**add_way_to_ways(t_way **ways, t_way *way);
 int					clear_ways(t_way **ways);
 int					clear_t_way(t_way *way);
+t_way				*add_room_to_way(t_way *ways, int room);
+t_way				*cp_way_add_room(t_way *way, int room);
 
 #endif

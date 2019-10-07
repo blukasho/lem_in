@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:35:56 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/04 21:03:11 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:58:03 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,39 @@ static int	count_ways(t_way **ways)
 	while (*ways && ++len)
 		++ways;
 	return (len);
+}
+
+t_way		*cp_way_add_room(t_way *way, int room)
+{
+	t_way	*new_way;
+
+	while (way)
+	{
+		new_way = add_room_to_way(new_way, way->pos);
+		way = way->next;
+	}
+	return (new_way);
+}
+
+t_way		*add_room_to_way(t_way *way, int room)
+{
+	t_way	*tmp;
+
+	if (way && (tmp = way))
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = (t_way *)malloc(sizeof(t_way));
+		ft_bzero(tmp->next, sizeof(t_way));
+		tmp->pos = room;
+	}
+	else
+	{
+		way = (t_way *)malloc(sizeof(t_way));
+		ft_bzero(way, sizeof(t_way));
+		way->pos = room;
+	}
+	return (way);
 }
 
 t_way		**add_way_to_ways(t_way **ways, t_way *way)
