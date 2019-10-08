@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/07 18:11:08 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:01:32 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,9 @@ t_way				*add_room_to_way(t_way *ways, int room);
 t_way				*cp_way_add_room(t_way *way, int room);
 int					check_duplicates(t_way *way);
 int					check_final_way(t_rooms *end, t_way *way);
+int					print_final_ways(t_way **ways);
+int					init_start_ways(t_lemin *lemin, int start);
 
 #endif
+
+

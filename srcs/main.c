@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/08 15:52:54 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:12:45 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@ static void	print_map(t_lemin *lemin)
 	ft_printf("\n");
 }
 
-static int	print_final_ways(t_lemin *lemin)
+int			print_final_ways(t_way **ways)
 {
-	t_way	**ways;
 	t_way	*way;
 	int		c = 0;
 
-	ways = lemin->ways;
+	ft_printf("<<<<print_ways>>>>\n");
 	while (ways && *ways)
 	{
 		way = *ways;
@@ -62,6 +61,7 @@ static int	print_final_ways(t_lemin *lemin)
 				ft_printf("->");
 			else
 				ft_printf("\n");
+			way = way->next;
 		}
 		++ways;
 	}
@@ -78,9 +78,10 @@ int			main(void)
 	{
 		while (lemin_find_ways(lemin) == 1)
 		{
+//			print_final_ways(lemin->turn);
 		}
 	}
-	print_final_ways(lemin);
+//	print_final_ways(lemin->ways);
 	if (lemin && (lemin->rooms))
 	{
 		rooms = lemin->rooms;

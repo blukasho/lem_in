@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:35:56 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/07 21:32:55 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:23:52 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,24 @@ t_way		**add_way_to_ways(t_way **ways, t_way *way)
 		*(ways + i) = NULL;
 	}
 	return (ways);
+}
+
+int			init_start_ways(t_lemin *lemin, int start)
+{
+	char	*room;
+	t_way	*tmp;
+
+	tmp = add_room_to_way(NULL, start);
+	room = (lemin->map)[start];
+	start = 0;
+	while (room[start])
+	{
+		if (room[start] == SETCH)
+			lemin->turn = add_way_to_ways(lemin->turn, cp_way_add_room(tmp, start));
+		++start;
+	}
+//	print_final_ways(lemin->turn);
+	free(tmp);
+	return (0);
 }
 
