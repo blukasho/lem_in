@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/07 18:11:26 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/08 15:17:21 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int			clear_way(t_way *way)
 	while (way)
 	{
 		tmp = way;
-		free(tmp);
 		way = way->next;
+		free(tmp);
 	}
 	return (0);
 }
