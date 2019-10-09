@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/08 18:12:45 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/09 09:33:24 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 //test function
 static void	print_map(t_lemin *lemin)
 {
+	if (lemin)
+	{}
 	int		y;
 	int		x;
 	int		side;
@@ -30,11 +32,11 @@ static void	print_map(t_lemin *lemin)
 		side = ft_strlen(map[y]);
 	ft_printf("%4c", ' ');
 	while (counter < side)
-		ft_printf("%-5d", counter++);
+		ft_printf("%-5d", (counter++) + 1);
 	ft_printf("\n");
 	while (map[y])
 	{
-		ft_printf("%-4d", y);
+		ft_printf("%-4d", y + 1);
 		while (map[y][x])
 			ft_printf("%-5c", map[y][x++]);
 		ft_printf("\n");
@@ -56,7 +58,7 @@ int			print_final_ways(t_way **ways)
 		ft_printf("%d |", c++);
 		while (way)
 		{
-			ft_printf("%d", way->pos);
+			ft_printf("%d", (way->pos) + 1);
 			if (way->next)
 				ft_printf("->");
 			else
@@ -71,7 +73,7 @@ int			print_final_ways(t_way **ways)
 int			main(void)
 {
 	t_lemin	*lemin;
-	t_rooms	*rooms;
+//	t_rooms	*rooms;
 
 	lemin = lemin_read_input();
 	if (!errno)
@@ -81,25 +83,27 @@ int			main(void)
 //			print_final_ways(lemin->turn);
 		}
 	}
-//	print_final_ways(lemin->ways);
+	ft_printf("\n|final ways|\n");
+	print_final_ways(lemin->ways);
+	ft_printf("|final ways|\n\n");
 	if (lemin && (lemin->rooms))
 	{
-		rooms = lemin->rooms;
-		ft_printf("\n|START PRINT ROOMS|\n");
-		while (rooms)
-		{
-			ft_printf("room name -> |%s| pos |%d| type ->|", rooms->name, rooms->pos);
-			if (rooms->type == STARTROOM)
-				ft_printf("START ROOM|\n");
-			else if (rooms->type == ENDROOM)
-				ft_printf("END ROOM|\n");
-			else if (rooms->type == DEFAULTROOM)
-				ft_printf("DEFAULT ROOM|\n");
-			else
-				ft_printf("NONAME ROOM|\n");
-			rooms = rooms->next;
-		}
-		ft_printf("|END PRINT ROOMS|\n\n");
+//		rooms = lemin->rooms; 
+//		ft_printf("\n|START PRINT ROOMS|\n");
+//		while (rooms)
+//		{
+//			ft_printf("room name -> |%s| pos |%d| type ->|", rooms->name, rooms->pos);
+//			if (rooms->type == STARTROOM)
+//				ft_printf("START ROOM|\n");
+//			else if (rooms->type == ENDROOM)
+//				ft_printf("END ROOM|\n");
+//			else if (rooms->type == DEFAULTROOM)
+//				ft_printf("DEFAULT ROOM|\n");
+//			else
+//				ft_printf("NONAME ROOM|\n");
+//			rooms = rooms->next;
+//		}
+//		ft_printf("|END PRINT ROOMS|\n\n");
 	}
 	if (lemin && lemin->map)
 		print_map(lemin);

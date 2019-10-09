@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/08 17:17:08 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/09 08:39:19 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		clear_t_lemin(t_lemin *lemin)
 		ft_str_del_arr(lemin->map);
 	if (lemin->turn)
 		free(lemin->turn);
+	if (lemin->ways)
+		clear_ways(lemin->ways);
 	free(lemin);
 	return (0);
 }
@@ -34,18 +36,18 @@ int			clear_t_rooms(t_rooms *rooms)
 		return (0);
 	while (rooms)
 	{
-		ft_printf("room name -> |%s| type ->|", rooms->name);
-		if (rooms->type == STARTROOM)
-			ft_printf("START ROOM|\n");
-		else if (rooms->type == ENDROOM)
-			ft_printf("END ROOM|\n");
-		else if (rooms->type == DEFAULTROOM)
-			ft_printf("DEFAULT ROOM|\n");
-		else
-			ft_printf("NONAME ROOM|\n");
+//		ft_printf("room name -> |%s| type ->|", rooms->name);
+//		if (rooms->type == STARTROOM)
+//			ft_printf("START ROOM|\n");
+//		else if (rooms->type == ENDROOM)
+//			ft_printf("END ROOM|\n");
+//		else if (rooms->type == DEFAULTROOM)
+//			ft_printf("DEFAULT ROOM|\n");
+//		else
+//			ft_printf("NONAME ROOM|\n");
 		if (rooms->name)
 		{
-			ft_printf("|%s| delete.\n", rooms->name);
+//			ft_printf("|%s| delete.\n", rooms->name);
 			ft_strdel(&(rooms->name));
 		}
 		tmp = rooms;

@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:35:56 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/08 18:23:52 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/09 08:34:39 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_way		*add_room_to_way(t_way *way, int room)
 			tmp = tmp->next;
 		tmp->next = (t_way *)malloc(sizeof(t_way));
 		ft_bzero(tmp->next, sizeof(t_way));
-		tmp->pos = room;
+		tmp->next->pos = room;
 	}
 	else
 	{
