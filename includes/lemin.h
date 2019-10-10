@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/08 18:01:32 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/10 13:17:24 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ISSTART(str) (!ft_strcmp(str, "##start"))
 # define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
-# define MAXANTS 10 //LLONG_MAX
+# define MAXANTS 1000 //LLONG_MAX
 # define FILLCH '0'
 # define SETCH '1'
 

@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:17:55 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/09 09:27:31 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/10 12:36:30 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int				lemin_find_ways(t_lemin *lemin)
 	start = lemin->start_room->pos;
 	if (lemin->turn)
 	{
+		if (errno)
+			return (0);
 		start = get_start(*(lemin->turn));
 		room = (lemin->map)[start];
 		start = 0;
@@ -81,7 +83,7 @@ int				lemin_find_ways(t_lemin *lemin)
 				add_way_to_turn(lemin, start);
 			++start;
 		}
-		print_final_ways(lemin->turn);
+//		print_final_ways(lemin->turn);
 		check_errors_and_find_end(lemin);
 		if (!*(lemin->turn))
 			return (0);
