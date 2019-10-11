@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:17:55 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 14:22:59 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 21:25:38 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ int				lemin_find_ways(t_lemin *lemin)
 		{
 			if (lvl[room] == SETCH && check_lvl(lemin->rooms, start, room))
 				add_way_to_turn(lemin, room);
+//			if (lvl[room] == SETCH)
+//				add_way_to_turn(lemin, room);
 			++room;
 		}
-//		print_final_ways(lemin->turn);
 		check_errors_and_find_end(lemin);
 //		sort_ways(lemin->turn, lemin->map);
 		//нужно проверить последние комнаты на количество ссылок

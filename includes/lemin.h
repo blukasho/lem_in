@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 14:22:59 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:24:00 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@
 # define ISSTART(str) (!ft_strcmp(str, "##start"))
 # define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
-# define MAXANTS 1000 //LLONG_MAX
+# define MAXANTS INT_MAX //LLONG_MAX
 # define FILLCH '0'
 # define SETCH '1'
 
 # define DEFAULTROOM 0
 # define STARTROOM 1
 # define ENDROOM 2
+
+#define MAX_COUNTER 5000
 
 typedef struct		s_rooms
 {

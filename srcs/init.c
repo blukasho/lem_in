@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 14:22:27 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/04 14:14:16 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 21:03:39 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_rooms		*get_t_rooms(char *name)
 
 	room = (t_rooms *)malloc(sizeof(t_rooms));
 	ft_bzero(room, sizeof(t_rooms));
+	room->index = -1;
 	if (name)
 		room->name = name;
 	return (room);

@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:17:10 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 14:36:49 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 21:04:14 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_rooms	*find_room(int room_pos, t_rooms *rooms)
 {
 	while (rooms->pos != room_pos)
 		rooms = rooms->next;
-	if (rooms && !(rooms->index))
+	if (rooms && (rooms->index) == -1)
 		return (rooms);
 	return (NULL);
 }
@@ -41,6 +41,19 @@ int			check_lvl(t_rooms *rooms, int pos_a, int pos_b)
 	return (0);
 }
 
+static int	find_end_and_set_index(t_rooms *rooms)
+{
+	while (rooms)
+	{
+		if (rooms->type == STARTROOM)
+			rooms->index = 0;
+		if (rooms->type == ENDROOM)
+			rooms->index = INT_MAX;
+		rooms = rooms->next;
+	}
+	return (0);
+}
+
 int			indexation_lvl(t_rooms *rooms, char **map, int start, int index)
 {
 	char	*lvl;
@@ -48,6 +61,7 @@ int			indexation_lvl(t_rooms *rooms, char **map, int start, int index)
 
 	lvl = map[start];
 	start = 0;
+	find_end_and_set_index(rooms);
 	while (lvl[start])
 	{
 		if (lvl[start] == SETCH)
