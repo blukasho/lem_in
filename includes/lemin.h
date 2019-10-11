@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 22:33:54 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 02:16:06 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ typedef struct		s_rooms
 	int				coord_x;
 	int				coord_y;
 	int				index;
+	int				sw;
+	int				input_links;
+	int				output_links;
 	struct s_rooms	*next;
 }					t_rooms;
 
@@ -101,6 +104,11 @@ int					sort_ways(t_way **ways, char **map);
 int					indexation_lvl(t_rooms *rooms, char **map, int start, int index);
 int					check_lvl(t_rooms *rooms, int pos_a, int pos_b);
 int					clear_one_lvl_links(t_lemin *lemin);
+int					clear_parent_links(t_lemin *lemin);
+int					clear_not_valid_rooms(t_lemin *lemin);
+t_rooms				*get_room(t_rooms *rooms, int pos);
+int					clear_parent_links_2(t_lemin *lemin);
+
 #endif
 
 

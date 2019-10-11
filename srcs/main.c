@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 22:21:30 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 02:38:37 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int					main(void)
 		ft_printf("start index rooms BFS lvl.\n");
 		indexation_lvl(lemin->rooms, lemin->map, lemin->start_room->pos, 1);
 		clear_one_lvl_links(lemin);
+		clear_parent_links(lemin);
+		clear_not_valid_rooms(lemin);
 		ft_printf("start find ways:)\n");
 		while (lemin_find_ways(lemin) == 1)
 		{
@@ -93,6 +95,7 @@ int					main(void)
 			if (lemin->ways)
 			{
 //				print_final_ways(lemin->ways);
+				break;
 			}
 			
 		}
