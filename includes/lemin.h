@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 18:24:00 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 22:33:54 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define STARTROOM 1
 # define ENDROOM 2
 
-#define MAX_COUNTER 5000
+#define MAX_COUNTER 15000
 
 typedef struct		s_rooms
 {
@@ -100,6 +100,7 @@ int					init_start_ways(t_lemin *lemin, int start);
 int					sort_ways(t_way **ways, char **map);
 int					indexation_lvl(t_rooms *rooms, char **map, int start, int index);
 int					check_lvl(t_rooms *rooms, int pos_a, int pos_b);
+int					clear_one_lvl_links(t_lemin *lemin);
 #endif
 
 

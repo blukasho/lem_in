@@ -55,7 +55,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 error
+badd +1 error
 argglobal
 silent! argdel *
 $argadd error
@@ -171,11 +171,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 26 - ((25 * winheight(0) + 16) / 32)
+let s:l = 16 - ((15 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
+16
 normal! 03|
 tabnext 1
 if exists('s:wipebuf')

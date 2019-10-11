@@ -56,14 +56,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 srcs/main.c
-badd +73 srcs/links.c
-badd +73 srcs/ways.c
+badd +110 srcs/links.c
+badd +79 srcs/ways.c
 badd +1 srcs/index.c
 badd +1 includes/lemin.h
-badd +14 Makefile
+badd +5 Makefile
 badd +1 srcs/clear.c
-badd +0 out
-badd +0 srcs/init.c
+badd +1 out
+badd +1 srcs/init.c
+badd +28 srcs/one_lvl_links.c
 argglobal
 silent! argdel *
 $argadd srcs/main.c
@@ -304,11 +305,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 86 - ((56 * winheight(0) + 35) / 70)
+let s:l = 97 - ((66 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-86
+97
 normal! 0
 wincmd w
 argglobal
@@ -418,11 +419,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 43 - ((35 * winheight(0) + 35) / 70)
+let s:l = 84 - ((44 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
+84
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
@@ -539,12 +540,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 62 - ((54 * winheight(0) + 35) / 70)
+let s:l = 63 - ((53 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
-normal! 021|
+63
+normal! 014|
 tabedit srcs/links.c
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -663,12 +664,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 91 - ((42 * winheight(0) + 35) / 70)
+let s:l = 92 - ((43 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-91
-normal! 08|
+92
+normal! 02|
 wincmd w
 argglobal
 edit srcs/clear.c
@@ -777,11 +778,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 39 - ((35 * winheight(0) + 35) / 70)
+let s:l = 57 - ((53 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-39
+57
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
@@ -1263,12 +1264,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 5 - ((4 * winheight(0) + 35) / 70)
+let s:l = 19 - ((18 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-5
-normal! 060|
+19
+normal! 0
 wincmd w
 argglobal
 edit includes/lemin.h
@@ -1377,16 +1378,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 46 - ((24 * winheight(0) + 35) / 70)
+let s:l = 39 - ((5 * winheight(0) + 35) / 70)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-46
+39
 normal! 022|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 99 + 99) / 199)
 exe 'vert 2resize ' . ((&columns * 99 + 99) / 199)
-tabnext 2
+tabnext 3
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
