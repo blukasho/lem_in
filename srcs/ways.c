@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:17:55 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 08:50:43 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 11:45:42 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static int		check_errors_and_find_end(t_lemin *lemin)
 	{
 		if (check_duplicates(*ways) && !clear_way(*ways))
 			skip_way(ways);
-		else if (check_final_way(lemin->end_room, *ways) && (lemin->ways = add_way_to_ways(lemin->ways, *ways)))
+		else if (check_final_way(lemin->end_room, *ways) &&
+			(lemin->ways = add_way_to_ways(lemin->ways, *ways)))
 			skip_way(ways);
 		else
 			++ways;
@@ -92,9 +93,6 @@ int				lemin_find_ways(t_lemin *lemin)
 			return (0);
 	}
 	else
-	{
 		lemin->turn = add_way_to_ways(NULL, add_room_to_way(NULL, start));
-//		print_final_ways(lemin->turn);
-	}
 	return (1);
 }
