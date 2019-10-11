@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/10 13:17:24 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 08:28:43 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int					check_duplicates(t_way *way);
 int					check_final_way(t_rooms *end, t_way *way);
 int					print_final_ways(t_way **ways);
 int					init_start_ways(t_lemin *lemin, int start);
+int					sort_ways(t_way **ways, char **map);
 
 #endif
 

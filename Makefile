@@ -6,12 +6,12 @@
 #*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2019/08/29 10:35:46 by blukasho          #+#    #+#             *#
-#*   Updated: 2019/09/09 10:57:32 by blukasho         ###   ########.fr       *#
+#*   Updated: 2019/10/11 08:26:42 by blukasho         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 SRCS=main.c read.c init.c ants.c rooms.c clear.c start_end_rooms.c links.c\
-	 length.c ways.c init_ways.c check_ways.c
+	 length.c ways.c init_ways.c check_ways.c sort.c
 
 OBJ=$(addprefix $(OBJDIR), $(SRCS:.c=.o))
 

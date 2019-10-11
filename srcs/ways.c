@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:17:55 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/10 12:36:30 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 08:50:43 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ int				lemin_find_ways(t_lemin *lemin)
 		}
 //		print_final_ways(lemin->turn);
 		check_errors_and_find_end(lemin);
+//		sort_ways(lemin->turn, lemin->map);
+		//нужно проверить последние комнаты на количество ссылок
+		//и те что меньше сдигать вверх по очереди
 		if (!*(lemin->turn))
 			return (0);
 	}

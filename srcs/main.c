@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/10 18:23:42 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/11 09:01:34 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ int			main(void)
 		while (lemin_find_ways(lemin) == 1)
 		{
 			print_final_ways(lemin->turn);
-//			if (lemin->ways)
+			if (lemin->ways)
+			{
 //				print_final_ways(lemin->ways);
+			}
 			
 		}
 	}
