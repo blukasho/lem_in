@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 01:35:05 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 02:35:44 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:12:26 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int			clear_not_valid_rooms(t_lemin *lemin)
 		{
 			if (map[layer][room] == SETCH && check_bad_link(lemin->rooms, room))
 			{
-				ft_printf("y |%d| x |%d|\n", layer, room);
 				map[layer][room] = FILLCH;
 				map[room][layer] = FILLCH;
 			}

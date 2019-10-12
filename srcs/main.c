@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 02:38:37 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:11:58 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,6 @@ int					main(void)
 			if (counter == MAX_COUNTER)
 				break;
 //			print_final_ways(lemin->turn);
-			if (lemin->ways)
-			{
-//				print_final_ways(lemin->ways);
-				break;
-			}
-			
 		}
 	}
 	ft_printf("\n|final ways|\n");

@@ -12,7 +12,7 @@
 
 SRCS=main.c read.c init.c ants.c rooms.c clear.c start_end_rooms.c links.c\
 	 length.c ways.c init_ways.c check_ways.c sort.c index.c one_lvl_links.c\
-	 parent_links.c not_valid_rooms.c get_room.c parent_link_2.c
+	 parent_links.c not_valid_rooms.c get_room.c
 
 OBJ=$(addprefix $(OBJDIR), $(SRCS:.c=.o))
 

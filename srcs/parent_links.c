@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 23:21:58 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 02:46:56 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:03:41 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ static int	count_input_output_links(t_rooms *rooms, char **map, int index, int s
 int		clear_parent_links(t_lemin *lemin)
 {
 	count_input_output_links(lemin->rooms, lemin->map, 0, lemin->start_room->pos);
-	clear_parent_links_2(lemin);
 	return (0);
 }

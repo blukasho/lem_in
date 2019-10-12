@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 02:16:06 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:03:41 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int					clear_one_lvl_links(t_lemin *lemin);
 int					clear_parent_links(t_lemin *lemin);
 int					clear_not_valid_rooms(t_lemin *lemin);
 t_rooms				*get_room(t_rooms *rooms, int pos);
-int					clear_parent_links_2(t_lemin *lemin);
 
 #endif
 
