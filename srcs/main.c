@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 23:19:16 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 23:22:15 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 //test function
 static void	print_map(t_lemin *lemin)
 {
+	if (lemin)
+	{}
 //	int		y;
 //	int		x;
 //	int		side;
