@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:22:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/10 12:22:20 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 10:15:48 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char			*get_rooms(t_lemin *lemin)
 	char		*input;
 
 	input = NULL;
-	while (!errno && (input = lemin_get_line()))
+	while (!errno && (input = lemin_get_line(lemin)))
 	{
 		if (!errno && (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input)
 			&& !ISEND(input))))

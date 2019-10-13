@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 14:48:53 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 11:20:23 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		clear_t_lemin(t_lemin *lemin)
 		free(lemin->turn);
 	if (lemin->ways)
 		clear_ways(lemin->ways);
+	if (lemin->input)
+		ft_strdel(&(lemin->input));
 	free(lemin);
 	return (0);
 }

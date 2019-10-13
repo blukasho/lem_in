@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:20:18 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 20:58:06 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 10:15:30 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int			get_links(char *input, t_lemin *lemin)
 		else
 			get_graph_chords(input, lemin);
 		ft_strdel(&input);
-		input = lemin_get_line();
+		input = lemin_get_line(lemin);
 	}
 	if (input)
 		ft_strdel(&input);

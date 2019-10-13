@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:03:13 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/09 13:39:29 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 10:27:05 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static int			check_get_ants_errors(char *input)
 	return (errno);
 }
 
-long long int		get_ants(void)
+long long int		get_ants(t_lemin *lemin)
 {
 	long long int	ants;
 	char			*input;
 
 	ants = 0;
-	while (!errno && (input = lemin_get_line()))
+	while (!errno && (input = lemin_get_line(lemin)))
 	{
 		if (ISCOMMENT(input) || (ISCOMMAND(input) && !ISSTART(input)))
 			ft_strdel(&input);

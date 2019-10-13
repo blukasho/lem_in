@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:07:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/09/23 09:12:59 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 10:16:17 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	add_start_room(t_lemin *lemin, t_rooms *room, char *in)
 {
-	while (!errno && (in = lemin_get_line()) && (ISCOMMENT(in) ||
+	while (!errno && (in = lemin_get_line(lemin)) && (ISCOMMENT(in) ||
 			(ISCOMMAND(in) && ISSTART(in))))
 		ft_strdel(&in);
 	if (!in || (ISCOMMAND(in) && ISEND(in)))
@@ -32,7 +32,7 @@ static int	add_start_room(t_lemin *lemin, t_rooms *room, char *in)
 
 static int	add_end_room(t_lemin *lemin, t_rooms *room, char *in)
 {
-	while (!errno && (in = lemin_get_line()) && (ISCOMMENT(in) ||
+	while (!errno && (in = lemin_get_line(lemin)) && (ISCOMMENT(in) ||
 			(ISCOMMAND(in) && ISEND(in))))
 		ft_strdel(&in);
 	if (!in || (ISCOMMAND(in) && ISSTART(in)))

@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 15:11:58 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:43:40 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,29 @@ static void	print_map(t_lemin *lemin)
 //	ft_printf("\n");
 }
 
-int			print_final_ways(t_way **ways)
-{
-	t_way	*way;
-	int		c = 0;
-
-	ft_printf("<<<<print_ways>>>>\n");
-	while (ways && *ways)
-	{
-		way = *ways;
-		ft_printf("%d |", c++);
-		while (way)
-		{
-			ft_printf("%d", (way->pos) + 1);
-			if (way->next)
-				ft_printf("->");
-			else
-				ft_printf("\n");
-			way = way->next;
-		}
-		++ways;
-	}
-	return (0);
-}
+//int			print_final_ways(t_way **ways)
+//{
+//	t_way	*way;
+//	int		c = 0;
+//
+//	ft_printf("<<<<print_ways>>>>\n");
+//	while (ways && *ways)
+//	{
+//		way = *ways;
+//		ft_printf("%d |", c++);
+//		while (way)
+//		{
+//			ft_printf("%s", way->name);
+//			if (way->next)
+//				ft_printf("->");
+//			else
+//				ft_printf("\n");
+//			way = way->next;
+//		}
+//		++ways;
+//	}
+//	return (0);
+//}
 
 
 int					main(void)
@@ -79,12 +79,12 @@ int					main(void)
 	lemin = lemin_read_input();
 	if (!errno)
 	{
-		ft_printf("start index rooms BFS lvl.\n");
+//		ft_printf("start index rooms BFS lvl.\n");
 		indexation_lvl(lemin->rooms, lemin->map, lemin->start_room->pos, 1);
 		clear_one_lvl_links(lemin);
 		clear_parent_links(lemin);
 		clear_not_valid_rooms(lemin);
-		ft_printf("start find ways:)\n");
+//		ft_printf("start find ways:)\n");
 		while (lemin_find_ways(lemin) == 1)
 		{
 			++counter;
@@ -94,10 +94,18 @@ int					main(void)
 //			print_final_ways(lemin->turn);
 		}
 	}
-	ft_printf("\n|final ways|\n");
-	print_final_ways(lemin->ways);
-	ft_printf("|final ways|\n\n");
-	ft_printf("counter |%u|\n", counter);
+	if (!errno && (!lemin->ways || !*(lemin->ways)))
+		SETANDPERROR(5, "ERROR. No ways.");
+	if (!errno)
+	{
+		ft_printf("%s\n", lemin->input);
+		clear_overlapping(lemin);
+		send_ants(lemin);
+	}
+//	ft_printf("\n|final ways|\n");
+//	print_final_ways(lemin->ways);
+//	ft_printf("|final ways|\n\n");
+//	ft_printf("counter |%u|\n", counter);
 	if (lemin && lemin->map)
 		print_map(lemin);
 	if (lemin)

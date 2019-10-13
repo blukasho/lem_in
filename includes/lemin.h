@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 15:03:41 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:35:55 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ typedef struct		s_rooms
 
 typedef struct		s_way
 {
+	int				type;
 	int				pos;
+	char			*name;
+	int				ant;
 	struct s_way	*next;
 }					t_way;
 
@@ -67,6 +70,7 @@ typedef struct		s_lemin
 	t_way			**ways;//all ways START->END
 	t_way			**turn;
 	char			**map; //rooms len * len
+	char			*input;
 	//карта комнат +
 	//комната не может ссылаться сама на себя + 
 	//невозможные комнаты +
@@ -76,12 +80,12 @@ typedef struct		s_lemin
 	//старт без ссылки невозможен и конец
 }					t_lemin;
 
-char				*lemin_get_line(void);
+char				*lemin_get_line(t_lemin *lemin);
 t_lemin				*get_t_lemin(void);
 t_rooms				*get_t_rooms(char *name);
 char				*get_rooms(t_lemin *lemin);
 t_lemin				*lemin_read_input(void);
-long long int		get_ants(void);
+long long int		get_ants(t_lemin *lemin);
 int					clear_t_lemin(t_lemin *lemin);
 int					clear_t_rooms(t_rooms *rooms);
 char				*valid_room_name(char *name);
@@ -98,7 +102,6 @@ t_way				*add_room_to_way(t_way *ways, int room);
 t_way				*cp_way_add_room(t_way *way, int room);
 int					check_duplicates(t_way *way);
 int					check_final_way(t_rooms *end, t_way *way);
-int					print_final_ways(t_way **ways);
 int					init_start_ways(t_lemin *lemin, int start);
 int					sort_ways(t_way **ways, char **map);
 int					indexation_lvl(t_rooms *rooms, char **map, int start, int index);
@@ -107,6 +110,8 @@ int					clear_one_lvl_links(t_lemin *lemin);
 int					clear_parent_links(t_lemin *lemin);
 int					clear_not_valid_rooms(t_lemin *lemin);
 t_rooms				*get_room(t_rooms *rooms, int pos);
+int					send_ants(t_lemin *lemin);
+int					clear_overlapping(t_lemin *lemin);
 
 #endif
 
