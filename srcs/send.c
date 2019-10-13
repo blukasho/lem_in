@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 11:18:02 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 18:33:58 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:06:12 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	move_ants(t_way *way, int ant)
 	return (0);
 }
 
-static int	print_ways(t_way **ways)
+static int	print_ways(t_way **ways, int out)
 {
 	int		enter;
 	t_way	*way;
@@ -65,18 +65,18 @@ static int	print_ways(t_way **ways)
 		way = *ways;
 		while (way)
 		{
-			if (way->ant && (enter = 1))
+			if (way->ant && (enter = 1) && out)
 				ft_printf("L%d-%s ", way->ant, way->name);
 			way = way->next;
 		}
 		++ways;
 	}
-	if (enter)
+	if (enter && out)
 		ft_printf("\n");
 	return ((enter ? 1 : 0));
 }
 
-int			send_ants(t_lemin *lemin)
+int			send_ants(t_lemin *lemin, int out)
 {
 	int		send_ants;
 	int		remainng_ants;
@@ -99,7 +99,7 @@ int			send_ants(t_lemin *lemin)
 				send_ants = 0;
 			++ways;
 		}
-		if (!print_ways(lemin->ways))
+		if (!print_ways(lemin->ways, out))
 			return (0);
 	}
 	return (0);

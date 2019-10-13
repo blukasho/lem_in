@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 18:35:55 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:25:46 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@
 # define ISSTART(str) (!ft_strcmp(str, "##start"))
 # define ISEND(str) (!ft_strcmp(str, "##end"))
 # define SETERRNO(x) (errno = x)
-# define MAXANTS INT_MAX //LLONG_MAX
+# define MAXANTS INT_MAX
 # define FILLCH '0'
 # define SETCH '1'
+# define CONFIG "Lem-in:\n\t%s\n\t%s\n\t%s\n\t%s\n"
+# define NO_OUT "--no-out no print moving ants.\n"
+# define PRINT_WAYS "--print-ways print all ways START->END that where found.\n"
+# define NO_MAP "--no-map not print input map file.\n"
+# define HELP "--help print this help.\n"
 
 # define DEFAULTROOM 0
 # define STARTROOM 1
@@ -41,7 +46,7 @@
 typedef struct		s_rooms
 {
 	char			*name;
-	int				pos; //position in graph map
+	int				pos;
 	int				type;
 	int				coord_x;
 	int				coord_y;
@@ -67,17 +72,10 @@ typedef struct		s_lemin
 	t_rooms			*rooms;
 	t_rooms			*start_room;
 	t_rooms			*end_room;
-	t_way			**ways;//all ways START->END
+	t_way			**ways;
 	t_way			**turn;
-	char			**map; //rooms len * len
+	char			**map;
 	char			*input;
-	//карта комнат +
-	//комната не может ссылаться сама на себя + 
-	//невозможные комнаты +
-	//пустые комнаты невозможны
-	//мусор
-	//##start ##end невозможен
-	//старт без ссылки невозможен и конец
 }					t_lemin;
 
 char				*lemin_get_line(t_lemin *lemin);
@@ -110,9 +108,8 @@ int					clear_one_lvl_links(t_lemin *lemin);
 int					clear_parent_links(t_lemin *lemin);
 int					clear_not_valid_rooms(t_lemin *lemin);
 t_rooms				*get_room(t_rooms *rooms, int pos);
-int					send_ants(t_lemin *lemin);
+int					send_ants(t_lemin *lemin, int out);
 int					clear_overlapping(t_lemin *lemin);
+int					check_flag(char **argv, char *flag);
 
 #endif
-
-
