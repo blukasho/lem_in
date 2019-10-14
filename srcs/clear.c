@@ -6,13 +6,13 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:51:42 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 11:20:23 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:39:23 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-int		clear_t_lemin(t_lemin *lemin)
+int			clear_t_lemin(t_lemin *lemin)
 {
 	if (!lemin)
 		return (0);
@@ -38,20 +38,8 @@ int			clear_t_rooms(t_rooms *rooms)
 		return (0);
 	while (rooms)
 	{
-//		ft_printf("room name -> |%s| graph lvl |%d| in |%d| out |%d| type ->|", rooms->name, rooms->index, rooms->input_links, rooms->output_links);
-//		if (rooms->type == STARTROOM)
-//			ft_printf("START ROOM|\n");
-//		else if (rooms->type == ENDROOM)
-//			ft_printf("END ROOM|\n");
-//		else if (rooms->type == DEFAULTROOM)
-//			ft_printf("DEFAULT ROOM|\n");
-//		else
-//			ft_printf("NONAME ROOM|\n");
 		if (rooms->name)
-		{
-//			ft_printf("|%s| delete.\n", rooms->name);
 			ft_strdel(&(rooms->name));
-		}
 		tmp = rooms;
 		rooms = rooms->next;
 		free(tmp);

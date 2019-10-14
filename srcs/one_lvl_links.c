@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 21:38:41 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 15:09:40 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:33:52 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int			clear_one_lvl_links(t_lemin *lemin)
 	int		filial;
 	int		parent;
 
-
 	map = lemin->map;
 	parent = 0;
 	while (map[parent])
@@ -37,7 +36,8 @@ int			clear_one_lvl_links(t_lemin *lemin)
 		filial = 0;
 		while (map[parent][filial])
 		{
-			if (map[parent][filial] == SETCH && get_index(lemin->rooms, parent) == get_index(lemin->rooms, filial))
+			if (map[parent][filial] == SETCH && get_index(lemin->rooms, parent)
+				== get_index(lemin->rooms, filial))
 				map[parent][filial] = FILLCH;
 			++filial;
 		}

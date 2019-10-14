@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:52:26 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 22:25:46 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:42:46 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define STARTROOM 1
 # define ENDROOM 2
 
-#define MAX_COUNTER 15000
+# define MAX_COUNTER 10000
 
 typedef struct		s_rooms
 {
@@ -88,7 +88,8 @@ int					clear_t_lemin(t_lemin *lemin);
 int					clear_t_rooms(t_rooms *rooms);
 char				*valid_room_name(char *name);
 void				valid_room_coords(t_rooms *room, char *coords);
-t_rooms				*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms, char *in, int tp);
+t_rooms				*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms,
+										char *in, int tp);
 int					get_links(char *input, t_lemin *lemin);
 int					get_len_rooms(t_rooms *rooms);
 int					lemin_find_ways(t_lemin *lemin);
@@ -101,15 +102,16 @@ t_way				*cp_way_add_room(t_way *way, int room);
 int					check_duplicates(t_way *way);
 int					check_final_way(t_rooms *end, t_way *way);
 int					init_start_ways(t_lemin *lemin, int start);
-int					sort_ways(t_way **ways, char **map);
-int					indexation_lvl(t_rooms *rooms, char **map, int start, int index);
+int					indexation_lvl(t_rooms *rooms, char **map,
+									int start, int index);
 int					check_lvl(t_rooms *rooms, int pos_a, int pos_b);
 int					clear_one_lvl_links(t_lemin *lemin);
 int					clear_parent_links(t_lemin *lemin);
 int					clear_not_valid_rooms(t_lemin *lemin);
 t_rooms				*get_room(t_rooms *rooms, int pos);
-int					send_ants(t_lemin *lemin, int out);
+int					send_ants(t_lemin *lemin, int out, int val_send_ants);
 int					clear_overlapping(t_lemin *lemin);
 int					check_flag(char **argv, char *flag);
+int					check_move(t_way **all_ways, t_way **now_way, int ants);
 
 #endif

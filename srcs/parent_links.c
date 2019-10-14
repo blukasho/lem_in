@@ -6,13 +6,13 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 23:21:58 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/12 15:03:41 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:29:53 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-static int		get_index_room(t_rooms *rooms, int pos)
+static int	get_index_room(t_rooms *rooms, int pos)
 {
 	while (rooms)
 	{
@@ -35,7 +35,8 @@ static int	check_need_count(t_rooms *rooms, int index, int pos)
 	return (0);
 }
 
-static int	count_input_output_links(t_rooms *rooms, char **map, int index, int start)
+static int	count_input_output_links(t_rooms *rooms, char **map,
+			int index, int start)
 {
 	t_rooms	*curent_room;
 	char	*room;
@@ -47,8 +48,8 @@ static int	count_input_output_links(t_rooms *rooms, char **map, int index, int s
 	{
 		if (room[start] == SETCH && get_index_room(rooms, start) < index)
 			++(curent_room->input_links);
-		if (room[start] == SETCH &&
-			get_index_room(rooms, start) > index && curent_room->type != ENDROOM)
+		if (room[start] == SETCH && get_index_room(rooms, start) > index &&
+			curent_room->type != ENDROOM)
 			++(curent_room->output_links);
 		++start;
 	}
@@ -63,8 +64,9 @@ static int	count_input_output_links(t_rooms *rooms, char **map, int index, int s
 	return (0);
 }
 
-int		clear_parent_links(t_lemin *lemin)
+int			clear_parent_links(t_lemin *lemin)
 {
-	count_input_output_links(lemin->rooms, lemin->map, 0, lemin->start_room->pos);
+	count_input_output_links(lemin->rooms, lemin->map, 0,
+		lemin->start_room->pos);
 	return (0);
 }

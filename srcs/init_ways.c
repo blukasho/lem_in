@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_way.c                                        :+:      :+:    :+:   */
+/*   init_way.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:35:56 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/09 08:34:39 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:37:41 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ t_way		**add_way_to_ways(t_way **ways, t_way *way)
 
 	if ((i = 1) && way)
 		++i;
-	if (ways)
+	if (ways && (tmp = ways))
 	{
 		i += count_ways(ways);
-		tmp = ways;
 		ways = (t_way **)malloc((i + 1) * sizeof(t_way *));
 		i = ~0;
 		while (tmp[++i])
@@ -76,7 +75,6 @@ t_way		**add_way_to_ways(t_way **ways, t_way *way)
 			ways[i] = way;
 		ways[++i] = NULL;
 		free(tmp);
-
 	}
 	else if ((ways = (t_way **)malloc((i + 1) * sizeof(t_way *))))
 	{
@@ -98,11 +96,10 @@ int			init_start_ways(t_lemin *lemin, int start)
 	while (room[start])
 	{
 		if (room[start] == SETCH)
-			lemin->turn = add_way_to_ways(lemin->turn, cp_way_add_room(tmp, start));
+			lemin->turn = add_way_to_ways(lemin->turn,
+			cp_way_add_room(tmp, start));
 		++start;
 	}
-//	print_final_ways(lemin->turn);
 	free(tmp);
 	return (0);
 }
-

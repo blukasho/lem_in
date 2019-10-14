@@ -6,51 +6,18 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:49:43 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 23:22:15 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:47:53 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-//test function
-static void	print_map(t_lemin *lemin)
-{
-	if (lemin)
-	{}
-//	int		y;
-//	int		x;
-//	int		side;
-//	int		counter;
-//	char	**map;
-//
-//	y = 0;
-//	x = 0;
-//	counter = 0;
-//	side = 0;
-//	map = lemin->map;
-//	if (map && *map)
-//		side = ft_strlen(map[y]);
-//	ft_printf("%4c", ' ');
-//	while (counter < side)
-//		ft_printf("%-5d", (counter++) + 1);
-//	ft_printf("\n");
-//	while (map[y])
-//	{
-//		ft_printf("%-4d", y + 1);
-//		while (map[y][x])
-//			ft_printf("%-5c", map[y][x++]);
-//		ft_printf("\n");
-//		x = 0;
-//		++y;
-//	}
-//	ft_printf("\n");
-}
-
-int			print_final_ways(t_way **ways)
+int					print_final_ways(t_way **ways)
 {
 	t_way	*way;
-	int		c = 0;
+	int		c;
 
+	c = 0;
 	ft_printf("\n");
 	while (ways && *ways)
 	{
@@ -82,8 +49,8 @@ static int			run_lemin(t_lemin *lemin, int argc, char **argv)
 	while (lemin_find_ways(lemin) == 1)
 	{
 		++counter;
-		if (counter == MAX_COUNTER)
-			break;
+		if (counter >= MAX_COUNTER && lemin->ways)
+			break ;
 	}
 	if (!errno && (!lemin->ways || !*(lemin->ways)))
 		SETANDPERROR(5, "ERROR. No ways.");
@@ -92,17 +59,14 @@ static int			run_lemin(t_lemin *lemin, int argc, char **argv)
 		if (!(argc && check_flag(argv, "--no-map")))
 			ft_printf("%s\n", lemin->input);
 		clear_overlapping(lemin);
-		send_ants(lemin, !check_flag(argv, "--no-out"));
+		send_ants(lemin, !check_flag(argv, "--no-out"), 1);
 	}
-	if (lemin && lemin->map)
-		print_map(lemin);
 	return (0);
 }
 
-
 int					main(int argc, char **argv)
 {
-	t_lemin	*lemin;
+	t_lemin			*lemin;
 
 	--argc;
 	++argv;

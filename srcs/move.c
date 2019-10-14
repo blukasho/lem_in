@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_ways.c                                       :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 17:59:17 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/14 12:39:40 by blukasho         ###   ########.fr       */
+/*   Created: 2019/10/14 11:09:50 by blukasho          #+#    #+#             */
+/*   Updated: 2019/10/14 12:34:20 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-int			check_duplicates(t_way *way)
+static int	way_len(t_way *way)
 {
-	t_way	*inside_way;
+	int		len;
 
-	while (way && way->next)
-	{
-		inside_way = way->next;
-		while (inside_way)
-		{
-			if (way->pos == inside_way->pos)
-				return (1);
-			inside_way = inside_way->next;
-		}
+	len = 0;
+	while (way && ++len)
 		way = way->next;
-	}
-	return (0);
+	return (len);
 }
 
-int			check_final_way(t_rooms *end, t_way *way)
+int			check_move(t_way **all_ways, t_way **now_way, int ants)
 {
-	while (way)
+	int		result;
+
+	if ((*all_ways)->next == (*now_way)->next)
+		return (1);
+	result = way_len(*now_way) - 1;
+	++all_ways;
+	while ((*all_ways)->next != (*now_way)->next)
 	{
-		if (way->pos == end->pos)
-			return (1);
-		way = way->next;
+		result += way_len(*now_way) - way_len(*all_ways);
+		++all_ways;
 	}
-	return (0);
+	return (((ants - 1) > result ? 1 : 0));
 }

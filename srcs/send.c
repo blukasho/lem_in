@@ -6,7 +6,7 @@
 /*   By: blukasho <bodik1w@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 11:18:02 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 22:06:12 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:18:02 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,27 +76,27 @@ static int	print_ways(t_way **ways, int out)
 	return ((enter ? 1 : 0));
 }
 
-int			send_ants(t_lemin *lemin, int out)
+int			send_ants(t_lemin *lemin, int out, int val_send_ants)
 {
-	int		send_ants;
 	int		remainng_ants;
 	t_way	**ways;
 
-	send_ants = 1;
 	remainng_ants = lemin->ants;
 	prepare_ways(lemin->ways, lemin->rooms);
 	while (1 && (ways = lemin->ways))
 	{
 		while (*ways)
 		{
-			move_ants((*ways)->next, send_ants);
-			if (remainng_ants)
+			if (check_move(lemin->ways, ways, remainng_ants))
 			{
-			   	++send_ants;
-				--remainng_ants;
+				move_ants((*ways)->next, val_send_ants);
+				if (remainng_ants && ++val_send_ants)
+					--remainng_ants;
+				if (!remainng_ants)
+					val_send_ants = 0;
 			}
-			if (!remainng_ants)
-				send_ants = 0;
+			else
+				move_ants((*ways)->next, 0);
 			++ways;
 		}
 		if (!print_ways(lemin->ways, out))

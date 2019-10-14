@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:17:10 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/11 21:04:14 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:38:39 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_rooms	*find_room(int room_pos, t_rooms *rooms)
 	return (NULL);
 }
 
-int			check_lvl(t_rooms *rooms, int pos_a, int pos_b)
+int				check_lvl(t_rooms *rooms, int pos_a, int pos_b)
 {
 	int		index_a;
 	int		index_b;
@@ -41,7 +41,7 @@ int			check_lvl(t_rooms *rooms, int pos_a, int pos_b)
 	return (0);
 }
 
-static int	find_end_and_set_index(t_rooms *rooms)
+static int		find_end_and_set_index(t_rooms *rooms)
 {
 	while (rooms)
 	{
@@ -54,10 +54,10 @@ static int	find_end_and_set_index(t_rooms *rooms)
 	return (0);
 }
 
-int			indexation_lvl(t_rooms *rooms, char **map, int start, int index)
+int				indexation_lvl(t_rooms *rooms, char **map, int start, int index)
 {
-	char	*lvl;
-	t_rooms	*room;
+	char		*lvl;
+	t_rooms		*room;
 
 	lvl = map[start];
 	start = 0;

@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:55:34 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 11:01:52 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:20:37 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	add_line_to_input_buf(t_lemin *lemin, char *input)
 		lemin->input = ft_strjoin(lemin->input, tmp);
 		ft_strdel(&tmp);
 		ft_strdel(&tmp_lemin_input);
-
 	}
 	return (0);
 }

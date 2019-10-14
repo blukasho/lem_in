@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:20:18 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 10:15:30 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:30:40 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,7 @@ static int	get_graph_chords(char *input, t_lemin *lemin)
 	if (!errno && x == y)
 		SETANDPERROR(5, "ERROR. The room cannot refer to itself.");
 	if (!errno && ((lemin->map)[y][x] = SETCH))
-	{
 		(lemin->map)[x][y] = SETCH;
-/*
-**		(lemin->map)[x][y] = SETCH;
-**
-** Uncomment if you need find ALL ways in graph.
-*/
-	}
 	return (0);
 }
 

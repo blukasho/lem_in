@@ -6,7 +6,7 @@
 /*   By: blukasho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 13:07:32 by blukasho          #+#    #+#             */
-/*   Updated: 2019/10/13 10:16:17 by blukasho         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:16:28 by blukasho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	add_end_room(t_lemin *lemin, t_rooms *room, char *in)
 	return (0);
 }
 
-t_rooms		*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms, char *in, int tp)
+t_rooms		*add_start_end_rooms(t_lemin *lemin, t_rooms *rooms,
+			char *in, int tp)
 {
 	if (!errno && lemin->start_room && tp == STARTROOM)
 		SETANDPERROR(5, "ERROR. start room already available.");
